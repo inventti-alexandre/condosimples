@@ -1,0 +1,20 @@
+﻿@model IEnumerable<CondoSimples.Models.BoardModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mural de avisos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var item in Model)
+{
+    <article>
+        <p>
+            @Html.DisplayFor(modelItem => item.Post)
+        </p>
+    </article>
+}

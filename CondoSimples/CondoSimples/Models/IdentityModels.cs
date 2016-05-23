@@ -29,5 +29,7 @@ namespace CondoSimples.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<CondoSimples.Models.BoardModel> BoardModels { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CondoSimples.Models;
+using System.Collections.Generic;
 
 namespace CondoSimples.Controllers
 {
@@ -139,7 +140,25 @@ namespace CondoSimples.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            ApplicationDbContext db = new ApplicationDbContext();
+            //var condos = db.CondoModels.Take(100);
+
+            //List<SelectListItem> lstCondo = new List<SelectListItem>();
+            //foreach(var condo in condos)
+            //{
+            //    SelectListItem item = new SelectListItem();
+            //    item.Text = condo.Name;
+            //    item.Value = condo.ID.ToString();
+            //    lstCondo.Add(item);
+            //}
+
+            //SelectList ddlCondo = new SelectList(lstCondo, "Value", "Text", null);
+
+            //ViewBag.Condo = ddlCondo;
+
+            RegisterViewModel model = new RegisterViewModel();
+
+            return View(model);
         }
 
         //
@@ -149,9 +168,14 @@ namespace CondoSimples.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                int idCondo = Convert.ToInt32(Request.Form["condominio"]);
+                CondoModel condoddl = db.CondoModels.FirstOrDefault(x => x.ID == idCondo);
+
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Condo_ID = idCondo };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

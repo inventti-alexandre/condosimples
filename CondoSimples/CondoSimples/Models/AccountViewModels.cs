@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace CondoSimples.Models
 {
@@ -64,6 +65,8 @@ namespace CondoSimples.Models
 
     public class RegisterViewModel
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -79,6 +82,18 @@ namespace CondoSimples.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Selecione o condomínio")]
+        public System.Web.Mvc.SelectList Condos {
+            get
+            {
+                return new System.Web.Mvc.SelectList(
+                                    db.CondoModels.Select(
+                                        m => new System.Web.Mvc.SelectListItem
+                                        { Value = m.ID.ToString(), Text = m.Name }
+                                        ).ToList(), "Value", "Text", null);
+            }
+        }
     }
 
     public class ResetPasswordViewModel

@@ -10,107 +10,112 @@ using CondoSimples.Models;
 
 namespace CondoSimples.Controllers
 {
-    public class CondoController : Controller
+    public class TowerController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Condo
+        // GET: Tower
         public ActionResult Index()
         {
-            return View(db.CondoModels.ToList());
+            var towerModels = db.TowerModels.Include(t => t.Condo);
+            return View(towerModels.ToList());
         }
 
-        // GET: Condo/Details/5
+        // GET: Tower/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CondoModel condoModel = db.CondoModels.Find(id);
-            if (condoModel == null)
+            TowerModel towerModel = db.TowerModels.Find(id);
+            if (towerModel == null)
             {
                 return HttpNotFound();
             }
-            return View(condoModel);
+            return View(towerModel);
         }
 
-        // GET: Condo/Create
+        // GET: Tower/Create
         public ActionResult Create()
         {
+            ViewBag.Condo_ID = new SelectList(db.CondoModels, "ID", "Name");
             return View();
         }
 
-        // POST: Condo/Create
+        // POST: Tower/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,ParkingSlots")] CondoModel condoModel)
+        public ActionResult Create([Bind(Include = "ID,Name,Condo_ID")] TowerModel towerModel)
         {
             if (ModelState.IsValid)
             {
-                db.CondoModels.Add(condoModel);
+                db.TowerModels.Add(towerModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(condoModel);
+            ViewBag.Condo_ID = new SelectList(db.CondoModels, "ID", "Name", towerModel.Condo_ID);
+            return View(towerModel);
         }
 
-        // GET: Condo/Edit/5
+        // GET: Tower/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CondoModel condoModel = db.CondoModels.Find(id);
-            if (condoModel == null)
+            TowerModel towerModel = db.TowerModels.Find(id);
+            if (towerModel == null)
             {
                 return HttpNotFound();
             }
-            return View(condoModel);
+            ViewBag.Condo_ID = new SelectList(db.CondoModels, "ID", "Name", towerModel.Condo_ID);
+            return View(towerModel);
         }
 
-        // POST: Condo/Edit/5
+        // POST: Tower/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,ParkingSlots")] CondoModel condoModel)
+        public ActionResult Edit([Bind(Include = "ID,Name,Condo_ID")] TowerModel towerModel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(condoModel).State = EntityState.Modified;
+                db.Entry(towerModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(condoModel);
+            ViewBag.Condo_ID = new SelectList(db.CondoModels, "ID", "Name", towerModel.Condo_ID);
+            return View(towerModel);
         }
 
-        // GET: Condo/Delete/5
+        // GET: Tower/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CondoModel condoModel = db.CondoModels.Find(id);
-            if (condoModel == null)
+            TowerModel towerModel = db.TowerModels.Find(id);
+            if (towerModel == null)
             {
                 return HttpNotFound();
             }
-            return View(condoModel);
+            return View(towerModel);
         }
 
-        // POST: Condo/Delete/5
+        // POST: Tower/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CondoModel condoModel = db.CondoModels.Find(id);
-            db.CondoModels.Remove(condoModel);
+            TowerModel towerModel = db.TowerModels.Find(id);
+            db.TowerModels.Remove(towerModel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace CondoSimples.Models
 {
-    public class CondoModel
+    public class CommonPlaceModel
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public int ParkingSlots { get; set; }
-
-        public List<TowerModel> Towers { get; set; }
+        public int MyProperty { get; set; }
     }
 }

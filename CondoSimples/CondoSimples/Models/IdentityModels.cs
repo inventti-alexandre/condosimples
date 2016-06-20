@@ -38,5 +38,13 @@ namespace CondoSimples.Models
 
         public System.Data.Entity.DbSet<CondoSimples.Models.BoardModel> BoardModels { get; set; }
         public System.Data.Entity.DbSet<CondoSimples.Models.CondoModel> CondoModels { get; set; }
+
+        public System.Data.Entity.DbSet<CondoSimples.Models.TowerModel> TowerModels { get; set; }
+
+        public System.Data.Entity.DbSet<CondoSimples.Models.UnitModel> UnitModels { get; set; }
+
+        public System.Data.Entity.DbSet<CondoSimples.Models.EmployeeModel> EmployeeModels { get; set; }
+
+        public System.Data.Entity.DbSet<CondoSimples.Models.UserModel> UserModels { get; set; }
     }
 }

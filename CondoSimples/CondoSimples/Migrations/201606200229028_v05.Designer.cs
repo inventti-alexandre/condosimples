@@ -7,13 +7,13 @@ namespace CondoSimples.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ForeignKey : IMigrationMetadata
+    public sealed partial class v05 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ForeignKey));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(v05));
         
         string IMigrationMetadata.Id
         {
-            get { return "201606120503289_ForeignKey"; }
+            get { return "201606200229028_v05"; }
         }
         
         string IMigrationMetadata.Source

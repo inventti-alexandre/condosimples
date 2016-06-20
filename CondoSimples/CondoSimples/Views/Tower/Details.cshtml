@@ -1,4 +1,4 @@
-﻿@model CondoSimples.Models.CondoModel
+﻿@model CondoSimples.Models.TowerModel
 
 @{
     ViewBag.Title = "Details";
@@ -7,23 +7,23 @@
 <h2>Details</h2>
 
 <div>
-    <h4>CondoModel</h4>
+    <h4>TowerModel</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Condo.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Condo.Name)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ParkingSlots)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ParkingSlots)
         </dd>
 
     </dl>

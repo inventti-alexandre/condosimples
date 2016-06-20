@@ -7,110 +7,120 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CondoSimples.Models;
+using CondoSimples.Membership;
 
 namespace CondoSimples.Controllers
 {
-    public class CondoController : Controller
+    public class EmployeeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Condo
+        // GET: Employee
         public ActionResult Index()
         {
-            return View(db.CondoModels.ToList());
+            return View(db.EmployeeModels.ToList());
         }
 
-        // GET: Condo/Details/5
+        // GET: Employee/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CondoModel condoModel = db.CondoModels.Find(id);
-            if (condoModel == null)
+            EmployeeModel employeeModel = db.EmployeeModels.Find(id);
+            if (employeeModel == null)
             {
                 return HttpNotFound();
             }
-            return View(condoModel);
+            return View(employeeModel);
         }
 
-        // GET: Condo/Create
+        // GET: Employee/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Condo/Create
+        // POST: Employee/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,ParkingSlots")] CondoModel condoModel)
+        public ActionResult Create([Bind(Include = "ID,Name,Email,Cel,Position,DutyDays,WorkShift")] EmployeeModel employeeModel)
         {
             if (ModelState.IsValid)
             {
-                db.CondoModels.Add(condoModel);
+                int idCondo = Convert.ToInt32(Request["condo"]);
+
+                MembershipHandler membership = new MembershipHandler();
+                var user = new ApplicationUser { UserName = employeeModel.Email, Email = employeeModel.Email, Condo_ID = idCondo };
+
+                db.EmployeeModels.Add(employeeModel);
                 db.SaveChanges();
+
+                membership.CreateUser(user, Request.Form["pass"]);
+                membership.SetRoleEmpregado(user.Id);
+
                 return RedirectToAction("Index");
             }
 
-            return View(condoModel);
+            return View(employeeModel);
         }
 
-        // GET: Condo/Edit/5
+        // GET: Employee/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CondoModel condoModel = db.CondoModels.Find(id);
-            if (condoModel == null)
+            EmployeeModel employeeModel = db.EmployeeModels.Find(id);
+            if (employeeModel == null)
             {
                 return HttpNotFound();
             }
-            return View(condoModel);
+            return View(employeeModel);
         }
 
-        // POST: Condo/Edit/5
+        // POST: Employee/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,ParkingSlots")] CondoModel condoModel)
+        public ActionResult Edit([Bind(Include = "ID,Name,Email,Cel,Position,DutyDays,WorkShift")] EmployeeModel employeeModel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(condoModel).State = EntityState.Modified;
+                db.Entry(employeeModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(condoModel);
+            return View(employeeModel);
         }
 
-        // GET: Condo/Delete/5
+        // GET: Employee/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CondoModel condoModel = db.CondoModels.Find(id);
-            if (condoModel == null)
+            EmployeeModel employeeModel = db.EmployeeModels.Find(id);
+            if (employeeModel == null)
             {
                 return HttpNotFound();
             }
-            return View(condoModel);
+            return View(employeeModel);
         }
 
-        // POST: Condo/Delete/5
+        // POST: Employee/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CondoModel condoModel = db.CondoModels.Find(id);
-            db.CondoModels.Remove(condoModel);
+            EmployeeModel employeeModel = db.EmployeeModels.Find(id);
+            db.EmployeeModels.Remove(employeeModel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

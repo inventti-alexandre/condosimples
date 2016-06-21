@@ -7,7 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CondoSimples.Models;
+using CondoSimples.Membership;
 using Microsoft.AspNet.Identity;
+using CondoSimples.Mail;
 
 namespace CondoSimples.Controllers
 {
@@ -16,21 +18,30 @@ namespace CondoSimples.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Board
-        [Authorize]
         public ActionResult Index()
         {
-            IEnumerable<BoardModel> boards = db.BoardModels.Where(x => x.DateExpires >= DateTime.Now).AsEnumerable();
-            return View(boards);
+            string userID = User.Identity.GetUserId();
+            var user = db.Users.FirstOrDefault(x => x.Id == userID);
+
+            BoardModel activePost = db.BoardModels.FirstOrDefault(x => x.User.Id == userID && x.DateExpires > DateTime.Now);
+            ViewBag.ActivePost = activePost != null ? "S" : "N";
+
+            return View(db.BoardModels.Where(x => x.Published == true && x.DateExpires > DateTime.Now && x.User.Condo_ID == user.Condo_ID).ToList());
         }
 
         // GET: Board/IndexByUser
-        [Authorize]
         public ActionResult IndexByUser()
         {
             string userId = User.Identity.GetUserId();
-            IEnumerable<BoardModel> boards = db.BoardModels.Where(x => x.User.Id == userId).AsEnumerable();
+            return View(db.BoardModels.Where(x => x.User.Id == userId).ToList());
+        }
 
-            return View(boards);
+        // GET: Board/IndexAdmin
+        public ActionResult IndexAdmin()
+        {
+            string userID = User.Identity.GetUserId();
+            var user = db.Users.FirstOrDefault(x => x.Id == userID);
+            return View(db.BoardModels.Where(x => x.Published == false && x.DateExpires > DateTime.Now && x.User.Condo_ID == user.Condo_ID).ToList());
         }
 
         // GET: Board/Details/5
@@ -59,16 +70,19 @@ namespace CondoSimples.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Post")] BoardModel boardModel)
+        public ActionResult Create([Bind(Include = "Id,Post,DatePost,DateExpires,Published")] BoardModel boardModel)
         {
             if (ModelState.IsValid)
             {
-                string userId = User.Identity.GetUserId();
-                var user = db.Users.FirstOrDefault(x => x.Id == userId);
-
-                boardModel.User = user;
                 boardModel.DatePost = DateTime.Now;
                 boardModel.DateExpires = DateTime.Now.AddMonths(1);
+
+                if (!User.IsInRole(MembershipHandler.SINDICOROLE))
+                    boardModel.Published = false;
+
+                string userID = User.Identity.GetUserId();
+                ApplicationUser user = db.Users.FirstOrDefault(x => x.Id == userID);
+                boardModel.User = user;
 
                 db.BoardModels.Add(boardModel);
                 db.SaveChanges();
@@ -76,6 +90,24 @@ namespace CondoSimples.Controllers
             }
 
             return View(boardModel);
+        }
+
+        // GET: Board/Publish/5
+        public ActionResult Publish(int? id)
+        {
+            try
+            {
+                BoardModel boardModel = db.BoardModels.Find(id);
+                boardModel.Published = true;
+                db.Entry(boardModel).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("IndexAdmin");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Problemas ao publicar: " + ex.Message);
+            }
         }
 
         // GET: Board/Edit/5
@@ -98,10 +130,20 @@ namespace CondoSimples.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Post,DatePost,DateExpires")] BoardModel boardModel)
+        public ActionResult Edit([Bind(Include = "Id,Post,DatePost,DateExpires,Published")] BoardModel boardModel)
         {
             if (ModelState.IsValid)
             {
+                boardModel.DatePost = DateTime.Now;
+                boardModel.DateExpires = DateTime.Now.AddMonths(1);
+
+                if (!User.IsInRole(MembershipHandler.SINDICOROLE))
+                    boardModel.Published = false;
+
+                string userID = User.Identity.GetUserId();
+                ApplicationUser user = db.Users.FirstOrDefault(x => x.Id == userID);
+                boardModel.User = user;
+
                 db.Entry(boardModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -130,8 +172,14 @@ namespace CondoSimples.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             BoardModel boardModel = db.BoardModels.Find(id);
+
             db.BoardModels.Remove(boardModel);
             db.SaveChanges();
+
+            MailHandler.SendMail("Sua publicação no mural de avisos foi considerada inadequada pela moderação do seu condomínio.",
+                                    boardModel.User.Email,
+                                    "CondoSimples - Publicação não aprovada");
+
             return RedirectToAction("Index");
         }
 

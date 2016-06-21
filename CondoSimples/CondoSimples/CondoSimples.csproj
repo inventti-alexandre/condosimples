@@ -179,18 +179,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mail\MailHandler.cs" />
     <Compile Include="Membership\MembershipHandler.cs" />
     <Compile Include="Migrations\201605222328328_InitialCreate.cs" />
     <Compile Include="Migrations\201605222328328_InitialCreate.Designer.cs">
       <DependentUpon>201605222328328_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606200229028_v05.cs" />
-    <Compile Include="Migrations\201606200229028_v05.Designer.cs">
-      <DependentUpon>201606200229028_v05.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606200237337_v06.cs" />
-    <Compile Include="Migrations\201606200237337_v06.Designer.cs">
-      <DependentUpon>201606200237337_v06.cs</DependentUpon>
+    <Compile Include="Migrations\201606210021219_v09.cs" />
+    <Compile Include="Migrations\201606210021219_v09.Designer.cs">
+      <DependentUpon>201606210021219_v09.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -261,12 +258,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Board\Create.cshtml" />
-    <Content Include="Views\Board\Delete.cshtml" />
-    <Content Include="Views\Board\Details.cshtml" />
-    <Content Include="Views\Board\Edit.cshtml" />
-    <Content Include="Views\Board\Index.cshtml" />
-    <Content Include="Views\Board\IndexByUser.cshtml" />
     <Content Include="Views\Condo\Create.cshtml" />
     <Content Include="Views\Condo\Delete.cshtml" />
     <Content Include="Views\Condo\Details.cshtml" />
@@ -292,6 +283,13 @@
     <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\Edit.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Board\Create.cshtml" />
+    <Content Include="Views\Board\Delete.cshtml" />
+    <Content Include="Views\Board\Details.cshtml" />
+    <Content Include="Views\Board\Edit.cshtml" />
+    <Content Include="Views\Board\Index.cshtml" />
+    <Content Include="Views\Board\IndexByUser.cshtml" />
+    <Content Include="Views\Board\IndexAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -308,11 +306,8 @@
     <EmbeddedResource Include="Migrations\201605222328328_InitialCreate.resx">
       <DependentUpon>201605222328328_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606200229028_v05.resx">
-      <DependentUpon>201606200229028_v05.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606200237337_v06.resx">
-      <DependentUpon>201606200237337_v06.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606210021219_v09.resx">
+      <DependentUpon>201606210021219_v09.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

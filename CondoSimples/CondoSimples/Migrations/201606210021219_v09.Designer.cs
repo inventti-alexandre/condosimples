@@ -7,13 +7,13 @@ namespace CondoSimples.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class v05 : IMigrationMetadata
+    public sealed partial class v09 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(v05));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(v09));
         
         string IMigrationMetadata.Id
         {
-            get { return "201606200229028_v05"; }
+            get { return "201606210021219_v09"; }
         }
         
         string IMigrationMetadata.Source

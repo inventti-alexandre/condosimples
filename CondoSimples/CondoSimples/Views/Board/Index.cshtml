@@ -4,17 +4,59 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Mural de avisos</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    @if (ViewBag.ActivePost != "S")
+    {
+        @Html.ActionLink("Nova publicação", "Create")
+        @Html.Raw(" | ")
+    }
+    else
+    {
+        @Html.Raw("Você possui uma publicação não expirada! | ")
+    }
 
-@foreach (var item in Model)
-{
-    <article>
-        <p>
-            @Html.DisplayFor(modelItem => item.Post)
-        </p>
-    </article>
-}
+    @Html.ActionLink("Minhas publicações", "IndexByUser")
+
+    @if (User.IsInRole("Sindico"))
+    {
+        @Html.Raw(" | ")
+        @Html.ActionLink("Publicações pendentes", "IndexAdmin")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Post)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatePost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateExpires)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Published)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Post)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatePost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateExpires)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Published)
+            </td>
+        </tr>
+    }
+
+</table>

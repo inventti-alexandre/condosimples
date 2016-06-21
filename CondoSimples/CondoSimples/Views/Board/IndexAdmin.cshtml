@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CondoSimples.Models.BoardModel>
 
 @{
-    ViewBag.Title = "Minhas publicações";
+    ViewBag.Title = "Publicações pendentes";
 }
 
 <h2>Index</h2>
@@ -41,15 +41,10 @@
             @Html.DisplayFor(modelItem => item.Published)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            @if (item == Model.Last())
-            {
-                @Html.Raw(" | ")
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })               
-            }
+            @Html.ActionLink("Publicar", "Publish", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
-
     </tr>
 }
 

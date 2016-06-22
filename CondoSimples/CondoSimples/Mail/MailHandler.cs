@@ -14,7 +14,7 @@ namespace CondoSimples.Mail
         {
             var message = new MailMessage();
             message.To.Add(new MailAddress(mailTo));  // replace with valid value 
-            message.From = new MailAddress("rafael.rdgs@uol.com.br");  // replace with valid value
+            message.From = new MailAddress("condosimples@outlook.com.br");  // replace with valid value
             message.Subject = subject;
             message.Body = string.Format(body);
             message.IsBodyHtml = true;
@@ -23,11 +23,11 @@ namespace CondoSimples.Mail
             {
                 var credential = new NetworkCredential
                 {
-                    UserName = "XXXXX",  // replace with valid value
-                    Password = "XXXXX"  // replace with valid value
+                    UserName = "condosimples@outlook.com.br",  // replace with valid value
+                    Password = "atireiopaunogato666"  // replace with valid value
                 };
                 smtp.Credentials = credential;
-                smtp.Host = "smtps.uol.com.br";
+                smtp.Host = "smtp-mail.outlook.com";
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
                 smtp.Send(message);

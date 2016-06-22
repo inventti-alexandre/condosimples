@@ -22,3 +22,21 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.reset-col {
+    padding-left: 0;
+    padding-right: 0;
+}
+.board-post {
+    width: 90%;
+    border: 1px solid #033c73;
+    padding: 5px;
+    min-height: 60px;
+}
+.board-date {
+    text-align: center;
+}
+.board-entry {
+    margin-bottom: 15px;
+    display: inline-block;
+}

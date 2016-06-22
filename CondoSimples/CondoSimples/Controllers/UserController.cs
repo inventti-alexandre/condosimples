@@ -20,6 +20,7 @@ namespace CondoSimples.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: User
+        [Authorize]
         public ActionResult Index()
         {
             var userModels = db.UserModels.Include(u => u.Unit);
@@ -27,6 +28,7 @@ namespace CondoSimples.Controllers
         }
 
         // GET: User/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,9 +44,21 @@ namespace CondoSimples.Controllers
         }
 
         // GET: User/Create
-        public ActionResult Create()
+        [AllowAnonymous]
+        public ActionResult Create(int? condo)
         {
-            ViewBag.Unit_ID = new SelectList(db.UnitModels, "ID", "Name");
+            if (condo == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            CondoModel condoModel = db.CondoModels.Find(condo);
+            if (condoModel == null)
+            {
+                return HttpNotFound();
+            }
+            
+            ViewBag.Unit_ID = new SelectList(db.UnitModels.Where(x => x.Tower.Condo_ID == condo).ToList(), "ID", "Name");
             return View();
         }
 
@@ -61,14 +75,18 @@ namespace CondoSimples.Controllers
                 MembershipHandler membership = new MembershipHandler();
 
                 int idCondo = Convert.ToInt32(Request["condo"]);
-                CondoModel condoddl = db.CondoModels.FirstOrDefault(x => x.ID == idCondo);
+                //CondoModel condoddl = db.CondoModels.FirstOrDefault(x => x.ID == idCondo);
 
                 var user = new ApplicationUser { UserName = userModel.Email, Email = userModel.Email, Condo_ID = idCondo };
                 membership.CreateUser(user, Request.Form["pass"]);
                 
-                if(Request["adm"] == "S")
+                if(TempData["adm"] != null)
                 {
-                    membership.SetRoleSindico(user.Id);
+                    if (TempData["adm"].ToString() == "S")
+                    {
+                        membership.SetRoleSindico(user.Id);
+                        TempData.Clear();
+                    }
                 }
                 else
                 {
@@ -79,7 +97,7 @@ namespace CondoSimples.Controllers
 
                 db.UserModels.Add(userModel);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Login", "Account", "");
             }
 
             ViewBag.Unit_ID = new SelectList(db.UnitModels, "ID", "Name", userModel.Unit_ID);
@@ -87,6 +105,7 @@ namespace CondoSimples.Controllers
         }
 
         // GET: User/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -107,6 +126,7 @@ namespace CondoSimples.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,CPF,Name,Birthdate,Cel,Email,Residents,Pets,Cars,Visitors,Unit_ID")] UserModel userModel)
         {
             if (ModelState.IsValid)
@@ -120,6 +140,7 @@ namespace CondoSimples.Controllers
         }
 
         // GET: User/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -137,6 +158,7 @@ namespace CondoSimples.Controllers
         // POST: User/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             UserModel userModel = db.UserModels.Find(id);

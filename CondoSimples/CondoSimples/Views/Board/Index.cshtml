@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Mural de avisos</h2>
+<h2>Index</h2>
 
 <p>
     @if (ViewBag.ActivePost != "S")
@@ -14,7 +14,7 @@
     }
     else
     {
-        @Html.Raw("Você já possui uma publicação ativa | ")
+        @Html.Raw("Você possui uma publicação não expirada! | ")
     }
 
     @Html.ActionLink("Minhas publicações", "IndexByUser")
@@ -28,22 +28,16 @@
 <table class="table">
     <tr>
         <th>
-            <p>
-                @Html.DisplayNameFor(model => model.Post)
-            </p>
+            @Html.DisplayNameFor(model => model.Post)
         </th>
         <th>
-            <p>
             @Html.DisplayNameFor(model => model.DatePost)
-            </p>
         </th>
-        <!--<th>
-            @Html.DisplayNameFor(model => model.DateExpires)
-        </th>-->
         <th>
-            <p>
-                @Html.DisplayNameFor(model => model.Published)
-            </p>
+            @Html.DisplayNameFor(model => model.DateExpires)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Published)
         </th>
     </tr>
 
@@ -56,9 +50,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DatePost)
             </td>
-            <!--<td>
+            <td>
                 @Html.DisplayFor(modelItem => item.DateExpires)
-            </td>-->
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Published)
             </td>
@@ -66,13 +60,3 @@
     }
 
 </table>
-
-@foreach (var item in Model)
-{
-    <div class="col-md-12 board-entry">
-        <p class="board-post">
-            @Html.DisplayFor(modelItem => item.Post)
-        </p>
-        <p class="board-date">@Html.DisplayFor(modelItem => item.DatePost)</p>
-    </div>
-}

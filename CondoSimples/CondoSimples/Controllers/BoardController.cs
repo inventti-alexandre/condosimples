@@ -13,6 +13,7 @@ using CondoSimples.Mail;
 
 namespace CondoSimples.Controllers
 {
+    [Authorize]
     public class BoardController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

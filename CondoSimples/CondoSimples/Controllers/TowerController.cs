@@ -10,6 +10,7 @@ using CondoSimples.Models;
 
 namespace CondoSimples.Controllers
 {
+    [Authorize]
     public class TowerController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

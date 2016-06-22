@@ -9,7 +9,7 @@ namespace CondoSimples.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "CondoSimples.Models.ApplicationDbContext";
         }
 
@@ -20,7 +20,7 @@ namespace CondoSimples.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
-            //    context.People.AddOrUpdate(
+            //    context.People.AddOrUpdate(a
             //      p => p.FullName,
             //      new Person { FullName = "Andrew Peters" },
             //      new Person { FullName = "Brice Lambson" },

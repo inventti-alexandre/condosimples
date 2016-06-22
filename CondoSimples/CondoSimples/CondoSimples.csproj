@@ -181,13 +181,9 @@
     </Compile>
     <Compile Include="Mail\MailHandler.cs" />
     <Compile Include="Membership\MembershipHandler.cs" />
-    <Compile Include="Migrations\201605222328328_InitialCreate.cs" />
-    <Compile Include="Migrations\201605222328328_InitialCreate.Designer.cs">
-      <DependentUpon>201605222328328_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606210021219_v09.cs" />
-    <Compile Include="Migrations\201606210021219_v09.Designer.cs">
-      <DependentUpon>201606210021219_v09.cs</DependentUpon>
+    <Compile Include="Migrations\201606212048377_Initial.cs" />
+    <Compile Include="Migrations\201606212048377_Initial.Designer.cs">
+      <DependentUpon>201606212048377_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -303,11 +299,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605222328328_InitialCreate.resx">
-      <DependentUpon>201605222328328_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606210021219_v09.resx">
-      <DependentUpon>201606210021219_v09.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606212048377_Initial.resx">
+      <DependentUpon>201606212048377_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

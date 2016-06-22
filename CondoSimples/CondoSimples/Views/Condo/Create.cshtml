@@ -31,13 +31,23 @@
         </div>
 
         <div class="form-group">
+            <label for="towers" class = "control-label col-md-2">Número de torres</label>
+            <div class="col-md-10">
+                <input type="number" name="towers" class = "form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="units" class="control-label col-md-2">Número unidades por torre</label>
+            <div class="col-md-10">
+                <input type="number" name="units" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Prosseguir cadastrar usuário" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

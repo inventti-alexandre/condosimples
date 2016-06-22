@@ -56,10 +56,10 @@ namespace CondoSimples.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Senha")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Mantenha-me conectado")]
+        [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
 
@@ -73,14 +73,14 @@ namespace CondoSimples.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "A {0} deve conter pelo menos {2} caracteres.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Senha")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirme a senha")]
-        [Compare("Password", ErrorMessage = "Os valores dos campos não se correspondem.")]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Selecione o condomínio")]
@@ -104,14 +104,14 @@ namespace CondoSimples.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "A {0} deve conter pelo menos {2} caracteres.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Senha")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirme a senha")]
-        [Compare("Password", ErrorMessage = "Os valores dos campos não se correspondem.")]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

@@ -11,6 +11,7 @@ using CondoSimples.Membership;
 
 namespace CondoSimples.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

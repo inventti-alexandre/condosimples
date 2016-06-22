@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CondoSimples.Models;
 using CondoSimples.Membership;
+using Microsoft.AspNet.Identity;
 
 namespace CondoSimples.Controllers
 {
@@ -52,10 +53,11 @@ namespace CondoSimples.Controllers
         {
             if (ModelState.IsValid)
             {
-                int idCondo = Convert.ToInt32(Request["condo"]);
+                string userId = User.Identity.GetUserId();
+                var userAdm = db.Users.Find(userId);
 
                 MembershipHandler membership = new MembershipHandler();
-                var user = new ApplicationUser { UserName = employeeModel.Email, Email = employeeModel.Email, Condo_ID = idCondo };
+                var user = new ApplicationUser { UserName = employeeModel.Email, Email = employeeModel.Email, Condo_ID = userAdm.Condo_ID };
 
                 db.EmployeeModels.Add(employeeModel);
                 db.SaveChanges();

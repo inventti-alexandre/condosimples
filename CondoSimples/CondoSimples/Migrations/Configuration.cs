@@ -9,7 +9,7 @@ namespace CondoSimples.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
             ContextKey = "CondoSimples.Models.ApplicationDbContext";
         }
 

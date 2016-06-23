@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CondoSimples.Models.BorrowModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nova solicitação", "Create") |
+    @Html.ActionLink("Minhas solicitações", "IndexByUser") |
+    @Html.ActionLink("Meus empréstimos", "Lended") 
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRequire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateReturn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateComplete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRequest)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserLending)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateRequire)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateReturn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateComplete)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRequest.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserLending.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Emprestar Item", "Lend", new { id = item.ID }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

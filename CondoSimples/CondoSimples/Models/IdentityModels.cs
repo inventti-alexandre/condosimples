@@ -46,5 +46,7 @@ namespace CondoSimples.Models
         public System.Data.Entity.DbSet<CondoSimples.Models.EmployeeModel> EmployeeModels { get; set; }
 
         public System.Data.Entity.DbSet<CondoSimples.Models.UserModel> UserModels { get; set; }
+
+        public System.Data.Entity.DbSet<CondoSimples.Models.BorrowModel> BorrowModels { get; set; }
     }
 }

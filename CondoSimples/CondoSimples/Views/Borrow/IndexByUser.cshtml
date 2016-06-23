@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CondoSimples.Models.BorrowModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Minhas solicitações";
 }
 
-<h2>Index</h2>
+<h2>Minhas solicitações</h2>
 
 <p>
     @Html.ActionLink("Voltar", "Index")
@@ -59,9 +59,9 @@
             @Html.DisplayFor(modelItem => item.UserLending.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Detalhes", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.ID })
         </td>
     </tr>
 }

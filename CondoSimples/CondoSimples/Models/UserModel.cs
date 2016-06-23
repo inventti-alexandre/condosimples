@@ -28,7 +28,7 @@ namespace CondoSimples.Models
         public string Residents { get; set; }
         [Display(Name = "Animais de estimação")]
         public string Pets { get; set; }
-        [Display(Name = "Carros")]
+        [Display(Name = "Veículos e placas")]
         public string Cars { get; set; }
         [Display(Name = "Visitantes frequentes")]
         public string Visitors { get; set; }

@@ -56,10 +56,10 @@ namespace CondoSimples.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Manter-me conectado")]
         public bool RememberMe { get; set; }
     }
 
@@ -73,14 +73,14 @@ namespace CondoSimples.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "A {0} senha deve ter no mínimo {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirmar senha")]
+        [Compare("Password", ErrorMessage = "Os campos são divergentes.")]
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Selecione o condomínio")]
@@ -104,14 +104,14 @@ namespace CondoSimples.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "A {0} senha deve ter no mínimo {2} caracteres.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Senha")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Confirmar senha")]
+        [Compare("Password", ErrorMessage = "Os campos são divergentes.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

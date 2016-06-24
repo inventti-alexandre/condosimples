@@ -24,11 +24,12 @@
                 {
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Meus dados", "Edit", "User")</li>                       
+                        @*<li>@Html.ActionLink("Meus dados", "Edit", "User")</li>*@                    
                         <li>@Html.ActionLink("Condomínio", "Index", "Condo")</li>
                         <li>@Html.ActionLink("Funcionários", "Index", "Employee")</li>
                         <li>@Html.ActionLink("Usuários", "Index", "User")</li>
                         <li>@Html.ActionLink("Mural", "Index", "Board")</li>
+                        <li>@Html.ActionLink("Empréstimos", "Index", "Borrow")</li>
                         <li>@Html.ActionLink("Trocar Senha", "ChangePassword", "Manage")</li>                        
                     </ul>
                 }
@@ -36,8 +37,10 @@
                 {
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Meus dados", "Edit", "User")</li>
+                        <li>@Html.ActionLink("Funcionários", "Index", "Employee")</li>
+                        @*<li>@Html.ActionLink("Meus dados", "Edit", "User")</li>*@
                         <li>@Html.ActionLink("Mural", "Index", "Board")</li>
+                        <li>@Html.ActionLink("Empréstimos", "Index", "Borrow")</li>
                         <li>@Html.ActionLink("Trocar Senha", "ChangePassword", "Manage")</li>
 
                     </ul>

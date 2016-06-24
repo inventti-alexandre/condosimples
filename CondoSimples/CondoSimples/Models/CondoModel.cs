@@ -14,7 +14,9 @@ namespace CondoSimples.Models
         public string Name { get; set; }
         [Display(Name = "Vagas de estacionamento")]
         public int ParkingSlots { get; set; }
-
+        [Display(Name = "Endereço")]
+        public string Address { get; set; }
+        [Display(Name = "Torres")]
         public List<TowerModel> Towers { get; set; }
     }
 }

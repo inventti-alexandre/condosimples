@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CondoSimples.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CondoSimples.Controllers
 {
@@ -18,7 +19,8 @@ namespace CondoSimples.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.CondoModels.ToList());
+            var user = db.Users.Find(User.Identity.GetUserId());
+            return View(db.CondoModels.Where(x => x.ID == user.Condo_ID).ToList());
         }
 
         // GET: Condo/Details/5
@@ -48,7 +50,7 @@ namespace CondoSimples.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,ParkingSlots")] CondoModel condoModel)
+        public ActionResult Create([Bind(Include = "ID,Name,ParkingSlots,Address")] CondoModel condoModel)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +111,7 @@ namespace CondoSimples.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "ID,Name,ParkingSlots")] CondoModel condoModel)
+        public ActionResult Edit([Bind(Include = "ID,Name,ParkingSlots,Address")] CondoModel condoModel)
         {
             if (ModelState.IsValid)
             {

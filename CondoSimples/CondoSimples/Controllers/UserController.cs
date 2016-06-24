@@ -23,7 +23,9 @@ namespace CondoSimples.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var userModels = db.UserModels.Include(u => u.Unit);
+            var user = db.Users.Find(User.Identity.GetUserId());
+
+            var userModels = db.UserModels.Include(u => u.Unit).Include(a => a.User).Where(x => x.User.Condo_ID == user.Condo_ID);
             return View(userModels.ToList());
         }
 
@@ -97,6 +99,8 @@ namespace CondoSimples.Controllers
 
                 db.UserModels.Add(userModel);
                 db.SaveChanges();
+
+                membership.Login(user.UserName);
                 return RedirectToAction("Login", "Account", "");
             }
 

@@ -6,9 +6,12 @@
 
 <h2>Funcionários</h2>
 
-<p>
-    @Html.ActionLink("Novo", "Create")
-</p>
+    @if (User.IsInRole("Sindico"))
+    {
+        <p>
+            @Html.ActionLink("Novo", "Create")
+        </p>
+    }
 <table class="table">
     <tr>
         <th>
@@ -53,9 +56,12 @@
             @Html.DisplayFor(modelItem => item.WorkShift)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.ID })
+            @if (User.IsInRole("Sindico"))
+            {
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) @Html.Raw("|")
+                @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) @Html.Raw("|")
+                @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+            }
         </td>
     </tr>
 }

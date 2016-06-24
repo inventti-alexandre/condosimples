@@ -20,7 +20,7 @@ namespace CondoSimples.Models
         public DateTime DateExpires { get; set; }
         [Display(Name = "Publicado")]
         public bool Published { get; set; }
-
+        [Display(Name = "Usuário")]
         public ApplicationUser User { get; set; }
     }
 }

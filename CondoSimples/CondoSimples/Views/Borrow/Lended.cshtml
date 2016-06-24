@@ -61,7 +61,7 @@
         <td>
             @if (item.DateComplete == null)
             {
-                @Html.ActionLink("Item devolvido", "Return", new { id = item.ID })
+                @Html.ActionLink("Item devolvido", "Return", new { id = item.ID }, new { onclick = "return confirm('Item devolvido?');" })
             }
         </td>
     </tr>

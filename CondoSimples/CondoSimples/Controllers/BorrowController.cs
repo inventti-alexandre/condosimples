@@ -20,21 +20,21 @@ namespace CondoSimples.Controllers
         public ActionResult Index()
         {
             var user = db.Users.Find(User.Identity.GetUserId());
-            return View(db.BorrowModels.Where(y => y.DateComplete == null && y.UserRequest.Id != user.Id && y.DateReturn > DateTime.Now && y.UserRequest.Condo_ID == user.Condo_ID).ToList());
+            return View(db.BorrowModels.Include(u => u.UserRequest).Include(x => x.UserLending).Where(y => y.DateComplete == null && y.UserRequest.Id != user.Id && y.DateReturn > DateTime.Now && y.UserRequest.Condo_ID == user.Condo_ID && y.UserLending == null).ToList());
         }
 
         // GET: Borrow/IndexByUser
         public ActionResult IndexByUser()
         {
             var user = db.Users.Find(User.Identity.GetUserId());
-            return View(db.BorrowModels.Where(y => y.DateComplete == null && y.UserRequest.Id == user.Id && y.DateReturn > DateTime.Now).ToList());
+            return View(db.BorrowModels.Include(u => u.UserRequest).Include(x => x.UserLending).Where(y => y.DateComplete == null && y.UserRequest.Id == user.Id && y.DateReturn > DateTime.Now).ToList());
         }
 
         // GET: Borrow/IndexByUser
         public ActionResult Lended()
         {
             var user = db.Users.Find(User.Identity.GetUserId());
-            return View(db.BorrowModels.Where(y => y.UserLending.Id == user.Id).ToList());
+            return View(db.BorrowModels.Include(u => u.UserRequest).Include(x => x.UserLending).Where(y => y.UserLending.Id == user.Id).ToList());
         }
 
         // GET: Borrow/Details/5
@@ -149,6 +149,27 @@ namespace CondoSimples.Controllers
             }
 
             borrowModel.UserLending = db.Users.Find(User.Identity.GetUserId());
+
+            db.Entry(borrowModel).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Lended");
+        }
+
+        // GET: Borrow/Return
+        public ActionResult Return(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BorrowModel borrowModel = db.BorrowModels.Find(id);
+            if (borrowModel == null)
+            {
+                return HttpNotFound();
+            }
+
+            borrowModel.DateComplete = DateTime.Now;
 
             db.Entry(borrowModel).State = EntityState.Modified;
             db.SaveChanges();

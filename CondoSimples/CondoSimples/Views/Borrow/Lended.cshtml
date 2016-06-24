@@ -7,8 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Nova solicitação", "Create") |
-    @Html.ActionLink("Minhas solicitações", "IndexByUser")
+    @Html.ActionLink("Voltar", "Index")
 </p>
 <table class="table">
     <tr>
@@ -60,10 +59,10 @@
             @Html.DisplayFor(modelItem => item.UserLending.Email)
         </td>
         <td>
-            @Html.ActionLink("Emprestar Item", "Lend", new { id = item.ID }) |
-            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.ID })
+            @if (item.DateComplete == null)
+            {
+                @Html.ActionLink("Item devolvido", "Return", new { id = item.ID })
+            }
         </td>
     </tr>
 }

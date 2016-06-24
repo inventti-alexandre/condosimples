@@ -47,3 +47,8 @@ textarea {
 p.last-ones {
     margin: 50px 0;
 }
+.hello-user {
+    color: #fff;
+    padding: 15px 6px;
+    font-size: 15px;
+}

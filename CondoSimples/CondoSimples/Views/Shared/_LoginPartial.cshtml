@@ -6,7 +6,7 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
+        <li class="hello-user">
             <span>Olá @User.Identity.GetUserName() !</span>
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>

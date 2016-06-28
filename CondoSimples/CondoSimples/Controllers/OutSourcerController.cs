@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace CondoSimples.Controllers
 {
-    [Authorize(Roles = "sindico,funcionario")]
+    [Authorize(Roles = "Sindico,Empregado")]
     public class OutSourcerController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

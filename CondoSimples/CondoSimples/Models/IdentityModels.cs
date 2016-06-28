@@ -48,5 +48,9 @@ namespace CondoSimples.Models
         public System.Data.Entity.DbSet<CondoSimples.Models.UserModel> UserModels { get; set; }
 
         public System.Data.Entity.DbSet<CondoSimples.Models.BorrowModel> BorrowModels { get; set; }
+
+        public System.Data.Entity.DbSet<CondoSimples.Models.OutSourcerModel> OutSourcerModels { get; set; }
+
+        public System.Data.Entity.DbSet<CondoSimples.Models.AddressModel> AddressModels { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.Security;
 
 namespace CondoSimples.Membership
@@ -32,9 +33,10 @@ new RoleStore<IdentityRole>(new ApplicationDbContext()));
             return result.Succeeded;
         }
 
-        public void Login(string user)
+        public void Login(ApplicationUser user, HttpContextBase context)
         {
-            FormsAuthentication.SetAuthCookie(user, false);
+            var SignInManager = context.GetOwinContext().Get<ApplicationSignInManager>();
+            SignInManager.SignIn(user, false, false);
         }
 
         public void SetRoleSindico(string userId)

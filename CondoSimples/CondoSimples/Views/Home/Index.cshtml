@@ -1,8 +1,75 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model IEnumerable<CondoSimples.Models.BoardModel>
+
+@{
+    ViewBag.Title = "Home";
 }
 
-<div class="jumbotron">
-    <h1>CondoSimples - @ViewBag.Condo</h1>
+<div class="page-header">
+    <h1>@ViewBag.Condo</h1>
     <p class="lead">Solução em gestão da informação e espaços em condomínios prediais</p>
+</div>
+<div class="container">
+    <h2>Mural</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Post)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Post)
+            {
+                <tr>
+                    <td>
+                        <p class="list-group-item-text">
+                            @item.Post
+                        </p>
+                    </td>
+                    <td>
+                        @item.User.Email
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <h2>Solicitações de Empréstimo</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Quantidade
+                </th>
+                <th>
+                    Descrição
+                </th>
+                <th>
+                    Usuário Solicitante
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Borrow)
+            {
+                <tr>
+                    <td>
+                        @item.Quantity
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        @item.UserRequest.Email
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

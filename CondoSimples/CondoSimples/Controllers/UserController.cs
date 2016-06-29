@@ -100,8 +100,8 @@ namespace CondoSimples.Controllers
                 db.UserModels.Add(userModel);
                 db.SaveChanges();
 
-                membership.Login(user.UserName);
-                return RedirectToAction("Login", "Account", "");
+                membership.Login(user, HttpContext);
+                return RedirectToAction("Index", "Home", "");
             }
 
             ViewBag.Unit_ID = new SelectList(db.UnitModels, "ID", "Name", userModel.Unit_ID);

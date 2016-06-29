@@ -176,6 +176,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OutSourcerController.cs" />
+    <Compile Include="Controllers\PrivacyController.cs" />
+    <Compile Include="Controllers\TermsController.cs" />
     <Compile Include="Controllers\TowerController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -364,6 +366,8 @@
     <Content Include="Views\Address\_CreatePartial.cshtml" />
     <Content Include="Views\Address\_DetailsPartial.cshtml" />
     <Content Include="Views\Address\_EditPartial.cshtml" />
+    <Content Include="Views\Terms\Index.cshtml" />
+    <Content Include="Views\Privacy\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

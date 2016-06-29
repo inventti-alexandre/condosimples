@@ -262,6 +262,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\board.png" />
+    <Content Include="Content\Images\borrow.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\notification.png" />
+    <Content Include="Content\Images\receive.png" />
+    <Content Include="Content\Images\schedule.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

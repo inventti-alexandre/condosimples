@@ -63,7 +63,7 @@ namespace CondoSimples.Controllers
                 membership.CreateUser(user, Request.Form["pass"]);
                 membership.SetRoleEmpregado(user.Id);
 
-                employeeModel.User = db.Users.FirstOrDefault(x => x.Email == user.Email); ;
+                employeeModel.User = db.Users.Find(user.Id);
 
                 db.EmployeeModels.Add(employeeModel);
                 db.SaveChanges();

@@ -175,6 +175,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OutSourcerController.cs" />
     <Compile Include="Controllers\PrivacyController.cs" />
     <Compile Include="Controllers\TermsController.cs" />
@@ -186,61 +187,9 @@
     </Compile>
     <Compile Include="Mail\MailHandler.cs" />
     <Compile Include="Membership\MembershipHandler.cs" />
-    <Compile Include="Migrations\201606212048377_Initial.cs" />
-    <Compile Include="Migrations\201606212048377_Initial.Designer.cs">
-      <DependentUpon>201606212048377_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606230134353_Borrow.cs" />
-    <Compile Include="Migrations\201606230134353_Borrow.Designer.cs">
-      <DependentUpon>201606230134353_Borrow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606230135572_Borrow1.cs" />
-    <Compile Include="Migrations\201606230135572_Borrow1.Designer.cs">
-      <DependentUpon>201606230135572_Borrow1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606230146027_Borrow2.cs" />
-    <Compile Include="Migrations\201606230146027_Borrow2.Designer.cs">
-      <DependentUpon>201606230146027_Borrow2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606230206598_Borrow3.cs" />
-    <Compile Include="Migrations\201606230206598_Borrow3.Designer.cs">
-      <DependentUpon>201606230206598_Borrow3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606230215156_Borrow4.cs" />
-    <Compile Include="Migrations\201606230215156_Borrow4.Designer.cs">
-      <DependentUpon>201606230215156_Borrow4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606230219103_Borrow5.cs" />
-    <Compile Include="Migrations\201606230219103_Borrow5.Designer.cs">
-      <DependentUpon>201606230219103_Borrow5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606230229077_Borrow6.cs" />
-    <Compile Include="Migrations\201606230229077_Borrow6.Designer.cs">
-      <DependentUpon>201606230229077_Borrow6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606230230128_Borrow7.cs" />
-    <Compile Include="Migrations\201606230230128_Borrow7.Designer.cs">
-      <DependentUpon>201606230230128_Borrow7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606230243160_Borrow8.cs" />
-    <Compile Include="Migrations\201606230243160_Borrow8.Designer.cs">
-      <DependentUpon>201606230243160_Borrow8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606240103007_v10.cs" />
-    <Compile Include="Migrations\201606240103007_v10.Designer.cs">
-      <DependentUpon>201606240103007_v10.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606280148133_v101.cs" />
-    <Compile Include="Migrations\201606280148133_v101.Designer.cs">
-      <DependentUpon>201606280148133_v101.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606280228269_v102.cs" />
-    <Compile Include="Migrations\201606280228269_v102.Designer.cs">
-      <DependentUpon>201606280228269_v102.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606280245163_v103.cs" />
-    <Compile Include="Migrations\201606280245163_v103.Designer.cs">
-      <DependentUpon>201606280245163_v103.cs</DependentUpon>
+    <Compile Include="Migrations\201606290337074_Initial.cs" />
+    <Compile Include="Migrations\201606290337074_Initial.Designer.cs">
+      <DependentUpon>201606290337074_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -252,6 +201,7 @@
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\OutSourcerModel.cs" />
     <Compile Include="Models\TowerModel.cs" />
     <Compile Include="Models\UnitModel.cs" />
@@ -374,6 +324,10 @@
     <Content Include="Views\Address\_EditPartial.cshtml" />
     <Content Include="Views\Terms\Index.cshtml" />
     <Content Include="Views\Privacy\Index.cshtml" />
+    <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Order\Delete.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\IndexByUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -387,47 +341,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606212048377_Initial.resx">
-      <DependentUpon>201606212048377_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606230134353_Borrow.resx">
-      <DependentUpon>201606230134353_Borrow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606230135572_Borrow1.resx">
-      <DependentUpon>201606230135572_Borrow1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606230146027_Borrow2.resx">
-      <DependentUpon>201606230146027_Borrow2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606230206598_Borrow3.resx">
-      <DependentUpon>201606230206598_Borrow3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606230215156_Borrow4.resx">
-      <DependentUpon>201606230215156_Borrow4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606230219103_Borrow5.resx">
-      <DependentUpon>201606230219103_Borrow5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606230229077_Borrow6.resx">
-      <DependentUpon>201606230229077_Borrow6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606230230128_Borrow7.resx">
-      <DependentUpon>201606230230128_Borrow7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606230243160_Borrow8.resx">
-      <DependentUpon>201606230243160_Borrow8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606240103007_v10.resx">
-      <DependentUpon>201606240103007_v10.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606280148133_v101.resx">
-      <DependentUpon>201606280148133_v101.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606280228269_v102.resx">
-      <DependentUpon>201606280228269_v102.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606280245163_v103.resx">
-      <DependentUpon>201606280245163_v103.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606290337074_Initial.resx">
+      <DependentUpon>201606290337074_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

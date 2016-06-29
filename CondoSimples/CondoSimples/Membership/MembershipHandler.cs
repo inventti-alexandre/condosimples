@@ -1,11 +1,15 @@
 ﻿using CondoSimples.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
 
 namespace CondoSimples.Membership
 {
@@ -21,10 +25,18 @@ new UserStore<ApplicationUser>(new ApplicationDbContext()));
         private RoleManager<IdentityRole> _roleManager = new RoleManager<IdentityRole>(
 new RoleStore<IdentityRole>(new ApplicationDbContext()));
 
+        //private ApplicationSignInManager _signInManager = new ApplicationSignInManage))
+
         public bool CreateUser(ApplicationUser user, string password)
         {
             var result = _userManager.Create(user, password);
             return result.Succeeded;
+        }
+
+        public void Login(ApplicationUser user, HttpContextBase context)
+        {
+            var SignInManager = context.GetOwinContext().Get<ApplicationSignInManager>();
+            SignInManager.SignIn(user, false, false);
         }
 
         public void SetRoleSindico(string userId)

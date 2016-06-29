@@ -14,11 +14,13 @@ namespace CondoSimples.Models
         [Display(Name="Publicação")]
         [Required]
         public string Post { get; set; }
+        [Display(Name = "Data de publicação")]
         public DateTime DatePost { get; set; }
+        [Display(Name = "Data de expiração")]
         public DateTime DateExpires { get; set; }
         [Display(Name = "Publicado")]
         public bool Published { get; set; }
-
+        [Display(Name = "Usuário")]
         public ApplicationUser User { get; set; }
     }
 }

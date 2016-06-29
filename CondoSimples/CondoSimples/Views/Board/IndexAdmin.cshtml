@@ -4,7 +4,7 @@
     ViewBag.Title = "Publicações pendentes";
 }
 
-<h2>Index</h2>
+<h2>Publicações pendentes</h2>
 
 <p>
     @Html.ActionLink("Voltar", "Index")
@@ -19,6 +19,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateExpires)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Published)
@@ -38,12 +41,15 @@
             @Html.DisplayFor(modelItem => item.DateExpires)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.User.Email)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Published)
         </td>
         <td>
             @Html.ActionLink("Publicar", "Publish", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Excluir", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

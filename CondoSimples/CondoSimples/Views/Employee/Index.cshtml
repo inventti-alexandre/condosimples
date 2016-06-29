@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<CondoSimples.Models.EmployeeModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Funcionários";
 }
 
-<h2>Index</h2>
+<h2>Funcionários</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    @if (User.IsInRole("Sindico"))
+    {
+        <p>
+            @Html.ActionLink("Novo", "Create")
+        </p>
+    }
+
 <table class="table">
     <tr>
         <th>
@@ -53,10 +57,15 @@
             @Html.DisplayFor(modelItem => item.WorkShift)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
+                        @if (User.IsInRole("Sindico"))
+                        {
+                            <button class="btn btn-default">
+                                Editar @Html.ActionLink("Editar", "Edit", new { id = item.ID })
+                            </button>
+                                @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) @Html.Raw("|")
+                                @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                                }
+</td>
     </tr>
 }
 

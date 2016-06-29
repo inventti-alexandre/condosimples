@@ -27,14 +27,14 @@ namespace CondoSimples.Controllers
             BoardModel activePost = db.BoardModels.FirstOrDefault(x => x.User.Id == userID && x.DateExpires > DateTime.Now);
             ViewBag.ActivePost = activePost != null ? "S" : "N";
 
-            return View(db.BoardModels.Where(x => x.Published == true && x.DateExpires > DateTime.Now && x.User.Condo_ID == user.Condo_ID).ToList());
+            return View(db.BoardModels.Include(u => u.User).Where(x => x.Published == true && x.DateExpires > DateTime.Now && x.User.Condo_ID == user.Condo_ID).ToList());
         }
 
         // GET: Board/IndexByUser
         public ActionResult IndexByUser()
         {
             string userId = User.Identity.GetUserId();
-            return View(db.BoardModels.Where(x => x.User.Id == userId).ToList());
+            return View(db.BoardModels.Include(u => u.User).Where(x => x.User.Id == userId).ToList());
         }
 
         // GET: Board/IndexAdmin
@@ -42,7 +42,7 @@ namespace CondoSimples.Controllers
         {
             string userID = User.Identity.GetUserId();
             var user = db.Users.FirstOrDefault(x => x.Id == userID);
-            return View(db.BoardModels.Where(x => x.Published == false && x.DateExpires > DateTime.Now && x.User.Condo_ID == user.Condo_ID).ToList());
+            return View(db.BoardModels.Include(u => u.User).Where(x => x.Published == false && x.DateExpires > DateTime.Now && x.User.Condo_ID == user.Condo_ID).ToList());
         }
 
         // GET: Board/Details/5

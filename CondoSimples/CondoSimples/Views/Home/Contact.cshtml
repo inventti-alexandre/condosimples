@@ -1,16 +1,45 @@
 ﻿@{
     ViewBag.Title = "Contato";
 }
-<h2>@ViewBag.Title</h2>
 
-<address class="vcard">
-    <span class="adr">Av. Francisco Pignatari, 650</span><br />
-    <span class="region">Vila Gustavo Correia, Carapicuíba - SP</span><br />
-    <span class="postal-code">CEP: 06310-390</span><br /> 
-    <span class="tel"><abbr title="Telefone">Tel: (11)4184-8404</abbr></span>
-    
-</address>
+<h2>Entre em contato</h2>
 
-<address>
-    <strong>Suporte:</strong>   <a href="mailto:condosimples@outlook.com.br">condosimples@outlook.com.br</a><br />
-</address>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <hr />
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="control-label col-md-2" for="email" >Email</label>
+                <input type="email" name="email" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="control-label col-sm-2" for="name">Assunto</label>
+                <input type="text" name="subject" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <label class="control-label col-sm-2" for="name">Mensagem</label>
+                <textarea name="message" class="form-control" ></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+                <input type="submit" value="Enviar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "About", "Index")
+</div>

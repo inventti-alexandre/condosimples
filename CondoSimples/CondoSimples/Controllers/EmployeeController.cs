@@ -20,7 +20,8 @@ namespace CondoSimples.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            return View(db.EmployeeModels.ToList());
+            var user = db.Users.Find(User.Identity.GetUserId());
+            return View(db.EmployeeModels.Include(u => u.User).Where(x => x.User.Condo_ID == user.Condo_ID).ToList());
         }
 
         // GET: Employee/Details/5
@@ -59,11 +60,13 @@ namespace CondoSimples.Controllers
                 MembershipHandler membership = new MembershipHandler();
                 var user = new ApplicationUser { UserName = employeeModel.Email, Email = employeeModel.Email, Condo_ID = userAdm.Condo_ID };
 
-                db.EmployeeModels.Add(employeeModel);
-                db.SaveChanges();
-
                 membership.CreateUser(user, Request.Form["pass"]);
                 membership.SetRoleEmpregado(user.Id);
+
+                employeeModel.User = db.Users.Find(user.Id);
+
+                db.EmployeeModels.Add(employeeModel);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }

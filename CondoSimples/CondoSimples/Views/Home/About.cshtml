@@ -1,36 +1,70 @@
 ﻿@{
     ViewBag.Title = "Sobre o CondoSimples";
 }
-<h2>@ViewBag.Title</h2>
+<section class="home-about">
+    <h2>@ViewBag.Title</h2>
 
-<p>O CondoSimples é a solução para gestão da informação e de áreas comuns do seu condomínio.</p>
-<p>Elimine todos os papéis, cadernos e agendas que ocupam espaço, são difíceis de manter e causam demora e bagunça na resolução de problemas.</p>
-<p>Nosso software oferece uma solução virtual que concentrará toda a informação necessária sobre o seu condomínio, deixando-a sempre disponível para consultas.</p>
-<p>Veja as funções já disponíveis:</p>
-<ul class="functionalities list-unstyled">
-    <li class="funcs">
-        <strong>Mural de avisos</strong>: todos os condôminos podem fazer uma publicação a cada 30 dias, divulgando seus produtos, serviços, fazendo indicações e dando avisos em geral. Nada mais de avisos sendo levados pelo vendo, sobrepostos, rasgados, antigos e desinteressantes.
-        Sua publicação online fica disponível para visualização de todos os residentes  cadastrados de seu condomínio, sem que eles precisem se locomover até o quadro e sem a necessidade de criação de panfletos, poupando seu tempo e esforço.
-    </li>
-    <li class="funcs">
-        <strong>Empréstimo de itens</strong>: o sistema possibilita fazer um pedido de empréstimo de itens a seus vizinhos. Afinal, todo mundo já teve que comprar alguma coisa para usar apenas uma vez, ou precisar de algo por apenas alguns minutos, mas não querer incomodar
-        seus vizinhos com isso, pois, muitas vezes, mal os conhecemos.
-    </li>
-    <li class="funcs">
-        <strong>Notificação aos condôminos</strong>: o síndico ou algum funcionário do condomínio que tenha acesso ao sistema podem enviar notificações aos condôminos avisando sobre mudanças, reformas e acontecimentos inesperados. Dessa forma, todos ficam sabendo do que está
-        acontecendo, sem haver necessidade de se colar panfletos ou interfonar em todas as unidades.
-    </li>
-    <li class="funcs">
-        <strong>Recebimento de encomendas</strong>: o sistema possibilita o registro da chegada de uma encomenda ou correspondência na portaria e avisa ao condômino destinatário. Não precisa mais se preocupar em esquecer de verificar a chegada de novas cartas ou ir até a portaria à tôa.
-    </li>
-    <li class="funcs">
-        <strong>Reserva de áreas comuns</strong>: aquela preocupação em encontrar a agenda com as datas disponíveis para usar o salão de festas ou a churrasqueira e depois aguardar uma confirmação será substituída pela agenda online do CondoSimples, possibilitando escolher e reservar a
-        data disponível na hora.
-    </li>
-</ul>
+    <p>O CondoSimples é a solução para gestão da informação e de áreas comuns do seu condomínio.</p>
+    <p>Elimine todos os papéis, cadernos e agendas que ocupam espaço, são difíceis de manter e causam demora e bagunça na resolução de problemas.</p>
+    <p>Nosso software oferece uma solução virtual que concentrará toda a informação necessária sobre o seu condomínio, deixando-a sempre disponível para consultas.</p>
+    <p>Veja as funções já disponíveis:</p>
 
-<p class="last-ones">Para começar a aproveitar todas as vantagens do CondoSimples, não perca tempo, @Html.ActionLink("cadastre seu condomínio", "Create", "Condo")!</p>
+    <ul class="functionalities list-unstyled">
+        <hr />
+        <li class="funcs">
+            <div class="col-md-1 hidden-xs">
+                <img src="~/Content/Images/board.png" alt="Mural de avisos" class="funcs-thumb" />
+            </div>
+            <div class="col-md-11">
+                <strong>Mural de avisos</strong>: todos os condôminos podem fazer uma publicação a cada 30 dias, divulgando seus produtos, serviços, fazendo indicações e dando avisos em geral. Nada mais de avisos sendo levados pelo vendo, sobrepostos, rasgados, antigos e desinteressantes.
+                Sua publicação online fica disponível para visualização de todos os residentes  cadastrados de seu condomínio, sem que eles precisem se locomover até o quadro e sem a necessidade de criação de panfletos, poupando seu tempo e esforço.
+            </div>
+        </li>
+        <hr />
+        <li class="funcs">
+            <div class="col-md-11">
+                <strong>Empréstimo de itens</strong>: o sistema possibilita fazer um pedido de empréstimo de itens a seus vizinhos. Afinal, todo mundo já teve que comprar alguma coisa para usar apenas uma vez, ou precisar de algo por apenas alguns minutos, mas não querer incomodar
+                seus vizinhos com isso, pois, muitas vezes, mal os conhecemos.
+            </div>
+            <div class="col-md-1 hidden-xs">
+                <img src="~/Content/Images/borrow.png" alt="Empréstimo de itens" class="funcs-thumb" />
+            </div>
+        </li>
+        <hr />
+        <li class="funcs">
+            <div class="col-md-1 hidden-xs">
+                <img src="~/Content/Images/notification.png" alt="Notificação aos condôminos" class="funcs-thumb" />
+            </div>
+            <div class="col-md-11">
+                <strong>Notificação aos condôminos</strong>: o síndico ou algum funcionário do condomínio que tenha acesso ao sistema podem enviar notificações aos condôminos avisando sobre mudanças, reformas e acontecimentos inesperados. Dessa forma, todos ficam sabendo do que está
+                acontecendo, sem haver necessidade de se colar panfletos ou interfonar em todas as unidades.
+            </div>
+        </li>
+        <hr />
+        <li class="funcs">
+            <div class="col-md-11">
+                <strong>Recebimento de encomendas</strong>: o sistema possibilita o registro da chegada de uma encomenda ou correspondência na portaria e avisa ao condômino destinatário. Não precisa mais se preocupar em esquecer de verificar a chegada de novas cartas ou ir até a portaria à tôa.
+            </div>
+            <div class="col-md-1 hidden-xs">
+                <img src="~/Content/Images/receive.png" alt="Recebimento de encomendas" class="funcs-thumb" />
+            </div>
+        </li>
+        <hr />
+        <li class="funcs">
+            <div class="col-md-1 hidden-xs">
+                <img src="~/Content/Images/schedule.png" alt="Reserva de áreas comuns" class="funcs-thumb" />
+            </div>
+            <div class="col-md-11">
+                <strong>Reserva de áreas comuns</strong>: aquela preocupação em encontrar a agenda com as datas disponíveis para usar o salão de festas ou a churrasqueira e depois aguardar uma confirmação será substituída pela agenda online do CondoSimples, possibilitando escolher e reservar a
+                data disponível na hora.
+            </div>
+        </li>
+        <hr />
+    </ul>
 
-<p class="last-ones">Para mais informações, <a href="#">@Html.ActionLink("entre em contato conosco", "Contact")</a></p>
+    <p class="last-ones">Para começar a aproveitar todas as vantagens do CondoSimples, não perca tempo, @Html.ActionLink("cadastre seu condomínio", "Create", "Condo")!</p>
 
-<p class="last-ones">Saiba mais sobre nossos <a href="#">Termos de uso</a> e <a href="#">Política de privacidade</a>.</p>
+    <p class="last-ones">Para mais informações, <a href="#">entre em contato conosco</a>.</p>
+
+    <p class="last-ones">Saiba mais sobre nossos <a href="~/Terms/Index">Termos de uso</a> e <a href="~/Privacy/Index">Política de privacidade</a>.</p>
+</section>

@@ -175,6 +175,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OccurrenceController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OutSourcerController.cs" />
     <Compile Include="Controllers\PrivacyController.cs" />
@@ -191,6 +192,14 @@
     <Compile Include="Migrations\201606290337074_Initial.Designer.cs">
       <DependentUpon>201606290337074_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607010008088_Occurrence.cs" />
+    <Compile Include="Migrations\201607010008088_Occurrence.Designer.cs">
+      <DependentUpon>201607010008088_Occurrence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607010029524_Occurrence1.cs" />
+    <Compile Include="Migrations\201607010029524_Occurrence1.Designer.cs">
+      <DependentUpon>201607010029524_Occurrence1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressModel.cs" />
@@ -201,6 +210,7 @@
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OccurrenceModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\OutSourcerModel.cs" />
     <Compile Include="Models\TowerModel.cs" />
@@ -337,6 +347,13 @@
     <Content Include="Views\Order\Delete.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\IndexByUser.cshtml" />
+    <Content Include="Views\Occurrence\Create.cshtml" />
+    <Content Include="Views\Occurrence\Delete.cshtml" />
+    <Content Include="Views\Occurrence\Details.cshtml" />
+    <Content Include="Views\Occurrence\Edit.cshtml" />
+    <Content Include="Views\Occurrence\Index.cshtml" />
+    <Content Include="Views\Occurrence\IndexPending.cshtml" />
+    <Content Include="Views\Occurrence\IndexSolved.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -352,6 +369,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606290337074_Initial.resx">
       <DependentUpon>201606290337074_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607010008088_Occurrence.resx">
+      <DependentUpon>201607010008088_Occurrence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607010029524_Occurrence1.resx">
+      <DependentUpon>201607010029524_Occurrence1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

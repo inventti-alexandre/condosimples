@@ -59,8 +59,11 @@ namespace CondoSimples.Controllers
             {
                 return HttpNotFound();
             }
-            
-            ViewBag.Unit_ID = new SelectList(db.UnitModels.Where(x => x.Tower.Condo_ID == condo).ToList(), "ID", "Name");
+
+            //var users = db.Users.Where(x => x.Condo_ID == condo).Select(x => x.;
+            var users = db.UserModels.Include(i => i.User).Where(x => x.User.Condo_ID == condo).Select(x => x.Unit_ID);
+
+            ViewBag.Unit_ID = new SelectList(db.UnitModels.Include(i => i.Tower).Where(x => x.Tower.Condo_ID == condo && !users.Contains(x.ID)).ToList(), "ID", "Name");
             return View();
         }
 
@@ -71,12 +74,13 @@ namespace CondoSimples.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,CPF,Name,Birthdate,Cel,Email,Residents,Pets,Cars,Visitors,Unit_ID")] UserModel userModel)
         {
+            int idCondo = 0;
+
             if (ModelState.IsValid)
             {
-
                 MembershipHandler membership = new MembershipHandler();
 
-                int idCondo = Convert.ToInt32(Request["condo"]);
+                idCondo = Convert.ToInt32(Request["condo"]);
                 //CondoModel condoddl = db.CondoModels.FirstOrDefault(x => x.ID == idCondo);
 
                 var user = new ApplicationUser { UserName = userModel.Email, Email = userModel.Email, Condo_ID = idCondo };
@@ -104,7 +108,9 @@ namespace CondoSimples.Controllers
                 return RedirectToAction("Index", "Home", "");
             }
 
-            ViewBag.Unit_ID = new SelectList(db.UnitModels, "ID", "Name", userModel.Unit_ID);
+            var users = db.UserModels.Include(i => i.User).Where(x => x.User.Condo_ID == idCondo).Select(x => x.Unit_ID);
+            ViewBag.Unit_ID = new SelectList(db.UnitModels.Include(i => i.Tower).Where(x => x.Tower.Condo_ID == idCondo && !users.Contains(x.ID)).ToList(), "ID", "Name", userModel.Unit_ID);
+            //ViewBag.Unit_ID = new SelectList(db.UnitModels, "ID", "Name", userModel.Unit_ID);
             return View(userModel);
         }
 

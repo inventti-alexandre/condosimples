@@ -42,7 +42,9 @@ namespace CondoSimples.Controllers
         // GET: Condo/Create
         public ActionResult Create()
         {
-            return View();
+            CondoModel model = new CondoModel();
+            model.Address = new AddressModel();
+            return View(model);
         }
 
         // POST: Condo/Create
@@ -54,6 +56,17 @@ namespace CondoSimples.Controllers
         {
             if (ModelState.IsValid)
             {
+                AddressModel address = new AddressModel();
+                address.CEP = Request.Form["CEP"];
+                address.Street = Request.Form["Street"];
+                address.Number = Request.Form["Number"];
+                address.City = Request.Form["City"];
+                address.State = Request.Form["State"];
+
+                db.AddressModels.Add(address);
+                db.SaveChanges();
+
+
                 db.CondoModels.Add(condoModel);
                 db.SaveChanges();
 

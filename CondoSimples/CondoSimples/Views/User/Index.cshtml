@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Adicionar usuário", "Create")
 </p>
-<table class="table">
+<table class="table-responsive table-hover table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Unit.Name)
@@ -77,9 +77,9 @@
             @Html.DisplayFor(modelItem => item.Visitors)
         </td>
         <td>
-            @Html.ActionLink("Editar usu", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Detalhes", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Deletar", "Delete", new { id=item.ID })
+            @Html.ActionLink("Excluir", "Delete", new { id=item.ID })
         </td>
     </tr>
 }

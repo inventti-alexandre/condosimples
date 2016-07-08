@@ -32,7 +32,7 @@ namespace CondoSimples.Models
         public string Cars { get; set; }
         [Display(Name = "Visitantes frequentes")]
         public string Visitors { get; set; }
-        [Display(Name = "Torre e Unidade")]
+        [Display(Name = "Torre e unidade")]
         public int Unit_ID { get; set; }
         [ForeignKey("Unit_ID")]
         public UnitModel Unit { get; set; }

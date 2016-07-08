@@ -15,7 +15,6 @@ namespace CondoSimples.Models
         [Display(Name = "Data de registro")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy hh:mm}")]
         public DateTime DateOccurrence { get; set; }
-        public int MyProperty { get; set; }
         public CondoModel Condo { get; set; }
         [Display(Name = "Usuário")]
         public UserModel User { get; set; }

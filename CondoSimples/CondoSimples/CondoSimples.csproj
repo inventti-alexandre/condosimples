@@ -200,6 +200,10 @@
     <Compile Include="Migrations\201607010029524_Occurrence1.Designer.cs">
       <DependentUpon>201607010029524_Occurrence1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607081912285_tentativa.cs" />
+    <Compile Include="Migrations\201607081912285_tentativa.Designer.cs">
+      <DependentUpon>201607081912285_tentativa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressModel.cs" />
@@ -375,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607010029524_Occurrence1.resx">
       <DependentUpon>201607010029524_Occurrence1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607081912285_tentativa.resx">
+      <DependentUpon>201607081912285_tentativa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

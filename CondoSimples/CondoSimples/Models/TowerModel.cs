@@ -13,11 +13,11 @@ namespace CondoSimples.Models
         public int ID { get; set; }
         [Display(Name = "Torre")]
         public string Name { get; set; }
-        public int Condo_ID { get; set; }
+        [Display(Name = "Total de unidades")]
+        public int UnitsQtd { get; set; }
         [Display(Name = "Unidades")]
         public List<UnitModel> Units { get; set; }
 
-        [ForeignKey("Condo_ID")]
         public CondoModel Condo { get; set; }
     }
 }

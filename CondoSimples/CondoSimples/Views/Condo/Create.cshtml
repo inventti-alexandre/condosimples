@@ -1,32 +1,36 @@
 ﻿@model CondoSimples.Models.CondoModel
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("input#addTowerUnit").click(function () {
+            var tower = $('#tower').val();
+            var unit = $('#unit').val();
+
+            if (tower != "" && unit != "") {
+                $('#dvTowers').html($('#dvTowers').html() + "<p>Torre: " + tower + ", " + unit + " Unidades.</p>");
+
+                if ($('#towers_units').val() != "") {
+                    $('#towers_units').val($('#towers_units').val() + ";" + tower + "," + unit);
+                }else{
+                    $('#towers_units').val(tower + "," + unit);
+                }
+
+                $('#tower').val("");
+                $('#unit').val("");
+            }
+        });
+    });
+
+    function ExcluirTorre() {
+
+    }
+</script>
+
 @{
     ViewBag.Title = "Novo";
 }
-
-<script>
-    $.ajax({
-        type: 'POST',
-        url: 'http://kyleschaeffer.com/feed/',
-        data: { postVar1: 'theValue1', postVar2: 'theValue2' },
-        beforeSend: function () {
-            // this is where we append a loading image
-            $('#ajax-panel').html('<div class="loading"><img src="/images/loading.gif" alt="Loading..." /></div>');
-        },
-        success: function (data) {
-            // successful request; do something with the data
-            $('#ajax-panel').empty();
-            $(data).find('item').each(function (i) {
-                $('#ajax-panel').append('<h4>' + $(this).find('title').text() + '</h4><p>' + $(this).find('link').text() + '</p>');
-            });
-        },
-        error: function () {
-            // failed request; give feedback to user
-            $('#ajax-panel').html('<p class="error"><strong>Oops!</strong> Try that again in a few moments.</p>');
-        }
-    });
-</script>
-
 
 <h2>Novo</h2>
 
@@ -54,25 +58,23 @@
             </div>
         </div>
 
-
-        <div id="towers">
-            
-        </div>
-
+        <input type="hidden" id="towers_units" name="towers_units" />
+        <div id="dvTowers"></div>
 
         <div class="form-group">
-            <label for="towers" class = "control-label col-md-2">Número de torres</label>
-            <div class="col-md-10">
-                <input type="number" name="towers" class = "form-control" />
+            <label for="towers" class = "control-label col-md-2">Nome Torre</label>
+            <div>
+                <input type="text" id="tower" class = "form-control" />
             </div>
         </div>
 
         <div class="form-group">
-            <label for="units" class="control-label col-md-2">Número unidades por torre</label>
-            <div class="col-md-10">
-                <input type="number" name="units" class="form-control" />
+            <label for="units" class="control-label col-md-2">Número de unidades</label>
+            <div>
+                <input type="number" id="unit" class="form-control" />
             </div>
         </div>
+        <input type="button" id="addTowerUnit" value="Incluir" />
 
         @Html.Partial("~/Views/Address/_CreatePartial.cshtml", Model.Address)
 
@@ -83,3 +85,4 @@
         </div>
     </div>
 }
+

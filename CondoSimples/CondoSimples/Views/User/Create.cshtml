@@ -84,18 +84,20 @@
                 @Html.ValidationMessageFor(model => model.Visitors, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <div>
+            <label>Torre</label>
+            @Html.DropDownList("TowerId")
+        </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Unit_ID, "Unit_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Número da unidade</label>
             <div class="col-md-10">
-                @Html.DropDownList("Unit_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Unit_ID, "", new { @class = "text-danger" })
+                <input type="text" name="unit" class="form-control" required />
             </div>
         </div>
         <div class="form-group">
             <label for="pass" class="control-label col-md-2">Senha</label>
             <div class="col-md-10">
-                <input type="password" name="pass" class="form-control"/>
+                <input type="password" name="pass" class="form-control" required/>
             </div>
         </div>
 

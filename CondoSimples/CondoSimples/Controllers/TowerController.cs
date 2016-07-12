@@ -58,7 +58,7 @@ namespace CondoSimples.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Condo_ID = new SelectList(db.CondoModels, "ID", "Name", towerModel.Condo_ID);
+            ViewBag.Condo_ID = new SelectList(db.CondoModels, "ID", "Name", towerModel.Condo.ID);
             return View(towerModel);
         }
 
@@ -74,7 +74,7 @@ namespace CondoSimples.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Condo_ID = new SelectList(db.CondoModels, "ID", "Name", towerModel.Condo_ID);
+            ViewBag.Condo_ID = new SelectList(db.CondoModels, "ID", "Name", towerModel.Condo.ID);
             return View(towerModel);
         }
 
@@ -91,7 +91,7 @@ namespace CondoSimples.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Condo_ID = new SelectList(db.CondoModels, "ID", "Name", towerModel.Condo_ID);
+            ViewBag.Condo_ID = new SelectList(db.CondoModels, "ID", "Name", towerModel.Condo.ID);
             return View(towerModel);
         }
 

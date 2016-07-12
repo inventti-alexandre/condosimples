@@ -37,7 +37,7 @@ namespace CondoSimples.Controllers
             var user = db.Users.Find(User.Identity.GetUserId());
             ViewBag.Unit = new SelectList((from un in db.UnitModels.Include(t => t.Tower)
                                            join us in db.UserModels on un.ID equals us.Unit.ID
-                                           where un.Tower.Condo_ID == user.Condo_ID
+                                           where un.Tower.Condo.ID == user.Condo_ID
                                            select new
                                            {
                                                ID = un.ID,
@@ -58,7 +58,7 @@ namespace CondoSimples.Controllers
             var user = db.Users.Find(User.Identity.GetUserId());
             ViewBag.Unit = new SelectList((from un in db.UnitModels.Include(t => t.Tower)
                                            join us in db.UserModels on un.ID equals us.Unit.ID
-                                           where un.Tower.Condo_ID == user.Condo_ID
+                                           where un.Tower.Condo.ID == user.Condo_ID
                                            select new
                                            {
                                                ID = un.ID,

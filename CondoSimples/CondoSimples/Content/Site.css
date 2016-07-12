@@ -106,6 +106,29 @@ li.login-btn {
     padding-top: 15px;
     text-align: center;
 }
+.user-unit {
+    width: 17%;
+    word-break: break-all;
+    white-space: nowrap;
+}
+.user-nome {
+    width: 40%;
+    white-space: nowrap;
+}
+.user-cell {
+    width: 12%;
+    white-space: nowrap;
+}
+.user-residents, .user-pets, .user-residents, .user-cars, .user-visitors {
+    width: 20%;
+    white-space: nowrap;
+}
+.button-group {
+    display: block;
+}
+.table {
+    margin-bottom: 0;
+}
 
 @media(max-width: 767px) {
     .row {

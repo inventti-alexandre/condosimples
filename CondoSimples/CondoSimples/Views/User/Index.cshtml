@@ -4,84 +4,75 @@
     ViewBag.Title = "Usuários";
 }
 
-<h2>Index</h2>
+<h2>Condôminos cadastrados</h2>
 
 <p>
     @Html.ActionLink("Adicionar usuário", "Create")
 </p>
-<table class="table-responsive table-hover table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Unit.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CPF)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Birthdate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Residents)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pets)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cars)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Visitors)
-        </th>
-        <th></th>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <tr>
+            <th class="user-unit">
+                @Html.DisplayNameFor(model => model.Unit.Name)
+            </th>
+            <th class="user-nome">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="user-cell">
+                @Html.DisplayNameFor(model => model.Cel)
+            </th>
+            <th class="user-email">
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th class="user-residents">
+                @Html.DisplayNameFor(model => model.Residents)
+            </th>
+            <th class="user-pets">
+                @Html.DisplayNameFor(model => model.Pets)
+            </th>
+            <th class="user-cars">
+                @Html.DisplayNameFor(model => model.Cars)
+            </th>
+            <th class="user-visitors">
+                @Html.DisplayNameFor(model => model.Visitors)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Unit.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CPF)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Birthdate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Residents)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pets)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cars)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Visitors)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="user-unit">
+                    @Html.DisplayFor(modelItem => item.Unit.Name)
+                </td>
+                <td class="user-nome">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="user-cell">
+                    @Html.DisplayFor(modelItem => item.Cel)
+                </td>
+                <td class="user-email">
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td class="user-residents">
+                    @Html.DisplayFor(modelItem => item.Residents)
+                </td>
+                <td class="user-pets">
+                    @Html.DisplayFor(modelItem => item.Pets)
+                </td>
+                <td class="user-cars">
+                    @Html.DisplayFor(modelItem => item.Cars)
+                </td>
+                <td class="user-visitors">
+                    @Html.DisplayFor(modelItem => item.Visitors)
+                </td>
+                <td class="button-group">
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }) 
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.ID })
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

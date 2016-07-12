@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Registro de ocorrências</h2>
 
 <p>
     @Html.ActionLink("Nova ocorrência", "Create") |
@@ -12,42 +12,45 @@
     @Html.ActionLink("Pendentes", "IndexPending") |
     @Html.ActionLink("Resolvidas", "IndexSolved")
 </p>
-<table class="table-responsive table-hover table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateOccurrence)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Solved)
-        </th>
-        <th></th>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOccurrence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solved)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOccurrence)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Solved)
-        </td>
-        <td>
-            @Html.ActionLink("Detalhes", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOccurrence)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Solved)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

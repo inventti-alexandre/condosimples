@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CondoSimples.Models.BoardModel>
 
 @{
-    ViewBag.Title = "Postagens";
+    ViewBag.Title = "Publicações";
 }
 
-<h2>Postagens</h2>
+<h2>Publicações</h2>
 
 <p>
     @if (ViewBag.ActivePost != "S")
@@ -14,7 +14,7 @@
     }
     else
     {
-        @Html.Raw("Você possui uma publicação não expirada! | ")
+        @Html.Raw("Você possui uma publicação ativa! | ")
     }
 
     @Html.ActionLink("Minhas publicações", "IndexByUser")
@@ -25,44 +25,46 @@
         @Html.ActionLink("Publicações pendentes", "IndexAdmin")
     }
 </p>
-<table class="table-responsive table-hover table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Post)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DatePost)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateExpires)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Published)
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Post)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DatePost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateExpires)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Published)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Post)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatePost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateExpires)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Published)
+            </th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Post)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatePost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateExpires)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Published)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

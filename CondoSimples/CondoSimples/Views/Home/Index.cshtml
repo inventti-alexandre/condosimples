@@ -8,6 +8,9 @@
     <h1>@ViewBag.Condo</h1>
     <p class="lead">Solução em gestão da informação e espaços em condomínios prediais</p>
 </div>
+
+@if(User.IsInRole("Sindico") || User.IsInRole("Condomino"))
+{
 <div class="container">
     <h2>Mural</h2>
     <table class="table table-hover">
@@ -73,3 +76,33 @@
         </tbody>
     </table>
 </div>
+
+<div class="container">
+    <h2>Notificações</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Mensagem
+                </th>
+                <th>
+                    Data
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Notification)
+            {
+                <tr>
+                    <td>
+                        @item.Message
+                    </td>
+                    <td>
+                        @item.DateRegister
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

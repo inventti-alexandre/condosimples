@@ -21,12 +21,25 @@ namespace CondoSimples.Controllers
 
         // GET: User
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string txt)
         {
             var user = db.Users.Find(User.Identity.GetUserId());
-
-            var userModels = db.UserModels.Include(u => u.Unit).Include(a => a.User).Where(x => x.User.Condo_ID == user.Condo_ID);
-            return View(userModels.ToList());
+            
+            if (txt != string.Empty && txt != null)
+            {
+                var userModels = db.UserModels.Include(u => u.Unit).Include(a => a.User).Where(x => x.User.Condo_ID == user.Condo_ID && (x.Name.Contains(txt) 
+                                                                                                                                            || x.Pets.Contains(txt) 
+                                                                                                                                            || x.Residents.Contains(txt)
+                                                                                                                                            || x.Visitors.Contains(txt)
+                                                                                                                                            || x.Email.Contains(txt)
+                                                                                                                                            || x.Cel.Contains(txt)
+                                                                                                                                            || x.CPF.Contains(txt)));
+                return View(userModels.ToList());
+            }else
+            {
+                var userModels = db.UserModels.Include(u => u.Unit).Include(a => a.User).Where(x => x.User.Condo_ID == user.Condo_ID);
+                return View(userModels.ToList());
+            } 
         }
 
         // GET: User/Details/5

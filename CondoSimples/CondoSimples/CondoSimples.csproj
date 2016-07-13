@@ -175,6 +175,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\OccurrenceController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OutSourcerController.cs" />
@@ -208,6 +209,10 @@
     <Compile Include="Migrations\201607120154129_tower.Designer.cs">
       <DependentUpon>201607120154129_tower.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607130024052_Notification.cs" />
+    <Compile Include="Migrations\201607130024052_Notification.Designer.cs">
+      <DependentUpon>201607130024052_Notification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressModel.cs" />
@@ -218,6 +223,7 @@
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NotificationModel.cs" />
     <Compile Include="Models\OccurrenceModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\OutSourcerModel.cs" />
@@ -362,6 +368,11 @@
     <Content Include="Views\Occurrence\Index.cshtml" />
     <Content Include="Views\Occurrence\IndexPending.cshtml" />
     <Content Include="Views\Occurrence\IndexSolved.cshtml" />
+    <Content Include="Views\Notification\Create.cshtml" />
+    <Content Include="Views\Notification\Delete.cshtml" />
+    <Content Include="Views\Notification\Details.cshtml" />
+    <Content Include="Views\Notification\Edit.cshtml" />
+    <Content Include="Views\Notification\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -389,6 +400,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607120154129_tower.resx">
       <DependentUpon>201607120154129_tower.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607130024052_Notification.resx">
+      <DependentUpon>201607130024052_Notification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

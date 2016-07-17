@@ -14,6 +14,8 @@ namespace CondoSimples.Models
         [Display(Name="Publicação")]
         [Required]
         public string Post { get; set; }
+
+
         [Display(Name = "Data de publicação")]
         public DateTime DatePost { get; set; }
         [Display(Name = "Data de expiração")]

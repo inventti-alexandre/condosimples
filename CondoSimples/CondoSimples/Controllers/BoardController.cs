@@ -10,6 +10,7 @@ using CondoSimples.Models;
 using CondoSimples.Membership;
 using Microsoft.AspNet.Identity;
 using CondoSimples.Mail;
+using CondoSimples.Azure;
 
 namespace CondoSimples.Controllers
 {
@@ -77,6 +78,7 @@ namespace CondoSimples.Controllers
             {
                 boardModel.DatePost = DateTime.Now;
                 boardModel.DateExpires = DateTime.Now.AddMonths(1);
+                
 
                 if (!User.IsInRole(MembershipHandler.SINDICOROLE))
                     boardModel.Published = false;
@@ -87,6 +89,9 @@ namespace CondoSimples.Controllers
 
                 db.BoardModels.Add(boardModel);
                 db.SaveChanges();
+
+                StorageHandler.UploadImage(boardModel.Id.ToString(), null);
+
                 return RedirectToAction("Index");
             }
 

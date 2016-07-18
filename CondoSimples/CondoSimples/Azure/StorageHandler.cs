@@ -3,9 +3,11 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace CondoSimples.Azure
 {
@@ -16,10 +18,12 @@ namespace CondoSimples.Azure
         static CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
         static CloudBlobContainer container = blobClient.GetContainerReference("fotostg");
 
-        public static void UploadImage(string idImage, byte[] image)
+        public static void UploadImage(string idImage, HttpPostedFileBase file, string prefix)
         {
-            CloudBlockBlob blockBlob = container.GetBlockBlobReference(idImage);
-            blockBlob.UploadFromByteArray(image, 0, image.Length);
+            string[] extension = file.FileName.Split('.');
+
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(prefix + idImage + "." + extension[extension.Length - 1]);
+            blockBlob.UploadFromStream(file.InputStream);
         }
 
         public static Uri GetImageUri(string idImage)

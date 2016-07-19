@@ -18,12 +18,17 @@ namespace CondoSimples.Models
         [Display(Name = "Data de nascimento")]
         [DataType(DataType.Date)]
         public DateTime Birthdate { get; set; }
-        [Display(Name = "Celular")]
+        [Display(Name = "Tel. Celular")]
         [DataType(DataType.PhoneNumber)]
         public string Cel { get; set; }
+        [Display(Name = "Tel. Residencial")]
+        [DataType(DataType.PhoneNumber)]
+        public string Phone { get; set; }
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        [Display(Name = "Emails opcionais")]
+        public string EmailOthers { get; set; }
         [Display(Name = "Moradores")]
         public string Residents { get; set; }
         [Display(Name = "Animais de estimação")]

@@ -11,11 +11,21 @@
         <dt class="pull-left">
             Email
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            Foto
+        </dt>
+        <dd>
+            <img src="@ViewBag.Image" />
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Cel)
         </dt>

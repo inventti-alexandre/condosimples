@@ -61,11 +61,9 @@
                 <td>
                     @if (User.IsInRole("Sindico"))
                     {
-                        <button class="btn btn-default">
-                            Editar @Html.ActionLink("Editar", "Edit", new { id = item.ID })
-                        </button>
-                            @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) @Html.Raw("|")
-                            @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID }) @Html.Raw("|")
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) @Html.Raw("|")
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
                     }
                 </td>
             </tr>

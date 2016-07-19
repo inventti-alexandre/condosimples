@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity.EntityFramework;
 using CondoSimples.Membership;
+using CondoSimples.Azure;
 
 namespace CondoSimples.Controllers
 {
@@ -55,6 +56,9 @@ namespace CondoSimples.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Image = StorageHandler.GetImageUri("user_" + userModel.ID + ".jpg");
+
             return View(userModel);
         }
 
@@ -74,6 +78,7 @@ namespace CondoSimples.Controllers
             }
 
             ViewBag.TowerId = new SelectList(db.TowerModels.Include(c => c.Condo).Where(x => x.Condo.ID == condo).ToList(), "Id", "Name");
+            ViewBag.CondoId = condo;
 
             return View();
         }
@@ -83,15 +88,13 @@ namespace CondoSimples.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CPF,Name,Birthdate,Cel,Email,Residents,Pets,Cars,Visitors")] UserModel userModel)
+        public ActionResult Create([Bind(Include = "ID,CPF,Name,Birthdate,Cel,Phone,Email,EmailOthers,Residents,Pets,Cars,Visitors")] UserModel userModel, HttpPostedFileBase Image, int idCondo)
         {
-            int idCondo = 0;
+            //int idCondo = 0;
 
             if (ModelState.IsValid)
             {
                 MembershipHandler membership = new MembershipHandler();
-
-                idCondo = Convert.ToInt32(Request["condo"]);
 
                 var user = new ApplicationUser { UserName = userModel.Email, Email = userModel.Email, Condo_ID = idCondo };
                 membership.CreateUser(user, Request.Form["pass"]);
@@ -128,6 +131,9 @@ namespace CondoSimples.Controllers
                 db.UserModels.Add(userModel);
                 db.SaveChanges();
 
+                if (Image != null)
+                    StorageHandler.UploadImage(userModel.ID.ToString(), Image, "user_");
+
                 membership.Login(user, HttpContext);
                 return RedirectToAction("Index", "Home", "");
             }
@@ -159,15 +165,20 @@ namespace CondoSimples.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "ID,CPF,Name,Birthdate,Cel,Email,Residents,Pets,Cars,Visitors,Unit_ID")] UserModel userModel)
+        public ActionResult Edit([Bind(Include = "ID,CPF,Name,Birthdate,Cel,Phone,Email,EmailOthers,Residents,Pets,Cars,Visitors,Unit_ID")] UserModel userModel, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(userModel).State = EntityState.Modified;
                 db.SaveChanges();
+
+                if (Image != null)
+                    StorageHandler.UploadImage(userModel.ID.ToString(), Image, "user_");
+
                 return RedirectToAction("Index");
             }
-            ViewBag.Unit_ID = new SelectList(db.UnitModels, "ID", "Name", userModel.Unit_ID);
+            ViewBag.Unit_ID = new SelectList(db.UnitModels, "ID", "Name", userModel.Unit_ID);            
+
             return View(userModel);
         }
 

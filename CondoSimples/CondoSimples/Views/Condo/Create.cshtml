@@ -13,7 +13,7 @@
 
                 if ($('#towers_units').val() != "") {
                     $('#towers_units').val($('#towers_units').val() + ";" + tower + "," + unit);
-                }else{
+                } else {
                     $('#towers_units').val(tower + "," + unit);
                 }
 
@@ -21,11 +21,14 @@
                 $('#unit').val("");
             }
         });
+
+        $("form").submit(function () {
+            if ($('#towers_units').val() == "") {
+                alert("Adicione as torres para prosseguir");                
+                return false;
+            }
+        });
     });
-
-    function ExcluirTorre() {
-
-    }
 </script>
 
 @{
@@ -34,10 +37,10 @@
 
 <h2>Novo</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Condomínio</h4>
         <hr />
@@ -45,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -53,28 +56,37 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ParkingSlots, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ParkingSlots, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ParkingSlots, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.ParkingSlots, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        <h4>Torres</h4>
+        <hr />
+
         <input type="hidden" id="towers_units" name="towers_units" />
-        <div id="dvTowers"></div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Torres Inseridas</label>
+            <div class="col-md-10" id="dvTowers">
+            </div>
+        </div>
 
         <div class="form-group">
-            <label for="towers" class = "control-label col-md-2">Nome Torre</label>
-            <div>
-                <input type="text" id="tower" class = "form-control" />
+            <label for="towers" class="control-label col-md-2">Nome Torre</label>
+            <div class="col-md-10">
+                <input type="text" id="tower" class="form-control" />
             </div>
         </div>
 
         <div class="form-group">
             <label for="units" class="control-label col-md-2">Número de unidades</label>
-            <div>
+            <div class="col-md-10">
                 <input type="number" id="unit" class="form-control" />
+                <input type="button" id="addTowerUnit" value="Incluir" />
             </div>
+
         </div>
-        <input type="button" id="addTowerUnit" value="Incluir" />
+
 
         @Html.Partial("~/Views/Address/_CreatePartial.cshtml", Model.Address)
 

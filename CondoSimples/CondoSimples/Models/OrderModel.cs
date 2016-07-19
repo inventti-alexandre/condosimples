@@ -17,7 +17,7 @@ namespace CondoSimples.Models
         [Display(Name = "Data de recebimento")]
         [DataType(DataType.Date)]
         public DateTime DateReceived { get; set; }
-        [Display(Name = "Descriçao do objeto")]
+        [Display(Name = "Descrição do objeto")]
         public string Description { get; set; }
     }
 }

@@ -140,7 +140,7 @@ namespace CondoSimples.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Post,DatePost,DateExpires,Published")] BoardModel boardModel)
+        public ActionResult Edit([Bind(Include = "Id,Post,DatePost,DateExpires,Published")] BoardModel boardModel, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
@@ -156,6 +156,10 @@ namespace CondoSimples.Controllers
 
                 db.Entry(boardModel).State = EntityState.Modified;
                 db.SaveChanges();
+
+                if (Image != null)
+                    StorageHandler.UploadImage(boardModel.Id.ToString(), Image, "board_");
+
                 return RedirectToAction("Index");
             }
             return View(boardModel);

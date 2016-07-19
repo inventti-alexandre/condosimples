@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using CondoSimples.Models;
 using CondoSimples.Membership;
 using Microsoft.AspNet.Identity;
+using CondoSimples.Azure;
 
 namespace CondoSimples.Controllers
 {
@@ -36,6 +37,9 @@ namespace CondoSimples.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Image = StorageHandler.GetImageUri("employee_" + employeeModel.ID + ".jpg");
+
             return View(employeeModel);
         }
 
@@ -50,7 +54,7 @@ namespace CondoSimples.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Email,Cel,Position,DutyDays,WorkShift")] EmployeeModel employeeModel)
+        public ActionResult Create([Bind(Include = "ID,Name,Email,Cel,Position,DutyDays,WorkShift")] EmployeeModel employeeModel, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
@@ -67,6 +71,9 @@ namespace CondoSimples.Controllers
 
                 db.EmployeeModels.Add(employeeModel);
                 db.SaveChanges();
+
+                if (Image != null)
+                    StorageHandler.UploadImage(employeeModel.ID.ToString(), Image, "employee_");
 
                 return RedirectToAction("Index");
             }
@@ -94,12 +101,16 @@ namespace CondoSimples.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Email,Cel,Position,DutyDays,WorkShift")] EmployeeModel employeeModel)
+        public ActionResult Edit([Bind(Include = "ID,Name,Email,Cel,Position,DutyDays,WorkShift")] EmployeeModel employeeModel, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(employeeModel).State = EntityState.Modified;
                 db.SaveChanges();
+                
+                if(Image != null)
+                    StorageHandler.UploadImage(employeeModel.ID.ToString(), Image, "employee_");
+
                 return RedirectToAction("Index");
             }
             return View(employeeModel);

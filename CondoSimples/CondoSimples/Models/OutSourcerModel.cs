@@ -20,7 +20,7 @@ namespace CondoSimples.Models
         [Required]
         public string CNPJ { get; set; }
 
-        [Display(Name = "Url do site")]
+        [Display(Name = "Site")]
         public string Site { get; set; }
         [Display(Name = "Referência de contato")]
         public string Contact { get; set; }

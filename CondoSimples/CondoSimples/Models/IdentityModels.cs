@@ -54,5 +54,13 @@ namespace CondoSimples.Models
         public System.Data.Entity.DbSet<CondoSimples.Models.AddressModel> AddressModels { get; set; }
 
         public System.Data.Entity.DbSet<CondoSimples.Models.OrderModel> OrderModels { get; set; }
+
+        public System.Data.Entity.DbSet<CondoSimples.Models.OccurrenceModel> OccurrenceModels { get; set; }
+
+        public System.Data.Entity.DbSet<CondoSimples.Models.NotificationModel> NotificationModels { get; set; }
+
+        public System.Data.Entity.DbSet<CondoSimples.Models.CommonPlaceModel> CommonPlaceModels { get; set; }
+
+        public System.Data.Entity.DbSet<CondoSimples.Models.ScheduleModel> ScheduleModels { get; set; }
     }
 }

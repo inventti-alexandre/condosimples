@@ -12,6 +12,17 @@ namespace CondoSimples.Models
         public int ID { get; set; }
         [Display(Name = "Área comum")]
         public string Name { get; set; }
-        public int MyProperty { get; set; }
+        [Display(Name = "Valor")]
+        public float Price { get; set; }
+        [Display(Name = "Capacidade")]
+        public int Capacity { get; set; }
+        [Display(Name = "Itens inclusos")]
+        public string IncludeItens { get; set; }
+        [Display(Name = "Pronto para locação")]
+        public bool Active { get; set; }
+        [Display(Name = "Termos de uso")]
+        public string Terms { get; set; }
+
+        public CondoModel Condo { get; set; }
     }
 }

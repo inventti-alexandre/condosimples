@@ -10,6 +10,7 @@ using CondoSimples.Models;
 using CondoSimples.Membership;
 using Microsoft.AspNet.Identity;
 using CondoSimples.Mail;
+using CondoSimples.Azure;
 
 namespace CondoSimples.Controllers
 {
@@ -57,6 +58,9 @@ namespace CondoSimples.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Image = StorageHandler.GetImageUri("board_" + id + ".jpg");
+
             return View(boardModel);
         }
 
@@ -71,12 +75,13 @@ namespace CondoSimples.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Post,DatePost,DateExpires,Published")] BoardModel boardModel)
+        public ActionResult Create(BoardModel boardModel, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
                 boardModel.DatePost = DateTime.Now;
                 boardModel.DateExpires = DateTime.Now.AddMonths(1);
+                
 
                 if (!User.IsInRole(MembershipHandler.SINDICOROLE))
                     boardModel.Published = false;
@@ -87,6 +92,10 @@ namespace CondoSimples.Controllers
 
                 db.BoardModels.Add(boardModel);
                 db.SaveChanges();
+
+                if (Image != null)
+                    StorageHandler.UploadImage(boardModel.Id.ToString(), Image, "board_");
+
                 return RedirectToAction("Index");
             }
 
@@ -131,7 +140,7 @@ namespace CondoSimples.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Post,DatePost,DateExpires,Published")] BoardModel boardModel)
+        public ActionResult Edit([Bind(Include = "Id,Post,DatePost,DateExpires,Published")] BoardModel boardModel, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
@@ -147,6 +156,10 @@ namespace CondoSimples.Controllers
 
                 db.Entry(boardModel).State = EntityState.Modified;
                 db.SaveChanges();
+
+                if (Image != null)
+                    StorageHandler.UploadImage(boardModel.Id.ToString(), Image, "board_");
+
                 return RedirectToAction("Index");
             }
             return View(boardModel);

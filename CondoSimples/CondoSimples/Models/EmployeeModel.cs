@@ -23,9 +23,7 @@ namespace CondoSimples.Models
         [Required]
         public string Position { get; set; }
         [Display(Name = "Dias de trabalho")]
-        [Required]
         public string DutyDays { get; set; }
-        [Required]
         [Display(Name = "Horário de trabalho")]
         public string WorkShift { get; set; }
 

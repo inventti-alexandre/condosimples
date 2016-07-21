@@ -5,15 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace CondoSimples.Models
 {
     public class BoardModel
     {
         public int Id { get; set; }
-        [Display(Name="Publicação")]
+        [Display(Name = "Publicação")]
         [Required]
         public string Post { get; set; }
+
         [Display(Name = "Data de publicação")]
         public DateTime DatePost { get; set; }
         [Display(Name = "Data de expiração")]

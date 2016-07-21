@@ -42,7 +42,9 @@ namespace CondoSimples.Controllers
         // GET: Condo/Create
         public ActionResult Create()
         {
-            return View();
+            CondoModel model = new CondoModel();
+            model.Address = new AddressModel();
+            return View(model);
         }
 
         // POST: Condo/Create
@@ -54,32 +56,48 @@ namespace CondoSimples.Controllers
         {
             if (ModelState.IsValid)
             {
+                AddressModel address = new AddressModel();
+                address.CEP = Request.Form["CEP"];
+                address.Street = Request.Form["Street"];
+                address.Number = Request.Form["Number"];
+                address.City = Request.Form["City"];
+                address.State = Request.Form["State"];
+
+                db.AddressModels.Add(address);
+                db.SaveChanges();
+
+                condoModel.Address = address;
+
                 db.CondoModels.Add(condoModel);
                 db.SaveChanges();
 
-                int nTowers = Convert.ToInt32(Request.Form["towers"]);
-                int nUnits = Convert.ToInt32(Request.Form["units"]);
+                string towers_units = Request.Form["towers_units"];
+                string[] towers = towers_units.Split(';');
 
+                int nTowers = towers.Length;               
                 for (int t = 0; t < nTowers; t++)
                 {
+                    string[] units = towers[t].Split(',');
+                    int nUnits = Convert.ToInt32(units[1]);
+
                     TowerModel tower = new TowerModel();
-                    tower.Name = String.Format("Torre {0}", t + 1);
-                    tower.Condo_ID = condoModel.ID;
+                    tower.Name = String.Format(units[0]);
+                    tower.UnitsQtd = nUnits;
                     tower.Condo = condoModel;
 
                     db.TowerModels.Add(tower);
                     db.SaveChanges();
 
-                    for (int u = 0; u < nUnits; u++)
-                    {
-                        UnitModel unit = new UnitModel();
-                        unit.Name = String.Format("{0} - Unidade {1}", tower.Name, u + 1);
-                        unit.Tower_ID = tower.ID;
-                        unit.Tower = tower;
+                    //for (int u = 0; u < nUnits; u++)
+                    //{
+                    //    UnitModel unit = new UnitModel();
+                    //    unit.Name = String.Format("{0} - Unidade {1}", tower.Name, u + 1);
+                    //    unit.Tower_ID = tower.ID;
+                    //    unit.Tower = tower;
 
-                        db.UnitModels.Add(unit);
-                        db.SaveChanges();
-                    }
+                    //    db.UnitModels.Add(unit);
+                    //    db.SaveChanges();
+                    //}
                 }
 
                 TempData["adm"] = "S";

@@ -6,67 +6,68 @@
 
 <h2>Funcionários</h2>
 
-    @if (User.IsInRole("Sindico"))
-    {
-        <p>
-            @Html.ActionLink("Novo", "Create")
-        </p>
-    }
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Position)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DutyDays)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WorkShift)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cel)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Position)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DutyDays)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WorkShift)
-        </td>
-        <td>
-                        @if (User.IsInRole("Sindico"))
-                        {
-                            <button class="btn btn-default">
-                                Editar @Html.ActionLink("Editar", "Edit", new { id = item.ID })
-                            </button>
-                                @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) @Html.Raw("|")
-                                @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
-                                }
-</td>
-    </tr>
+@if (User.IsInRole("Sindico"))
+{
+    <p>
+        @Html.ActionLink("Novo", "Create")
+    </p>
 }
 
-</table>
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DutyDays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkShift)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DutyDays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkShift)
+                </td>
+                <td>
+                    @if (User.IsInRole("Sindico"))
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID }) @Html.Raw("|")
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) @Html.Raw("|")
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

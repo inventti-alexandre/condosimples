@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CondoSimples.Models.ScheduleModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DateSchedule)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Place.Name)
+        </th>
+        @if (User.IsInRole("Sindico"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.User.Unit.Tower.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Unit.Name)
+            </th>        
+            <th></th>
+        }
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateSchedule)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Place.Name)
+        </td>
+        @if (User.IsInRole("Sindico"))
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Unit.Tower.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Unit.Name)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        }
+    </tr>
+}
+
+</table>

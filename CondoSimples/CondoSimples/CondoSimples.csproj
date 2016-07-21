@@ -201,6 +201,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BoardController.cs" />
     <Compile Include="Controllers\BorrowController.cs" />
+    <Compile Include="Controllers\CommonPlaceController.cs" />
     <Compile Include="Controllers\CondoController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OutSourcerController.cs" />
     <Compile Include="Controllers\PrivacyController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\TermsController.cs" />
     <Compile Include="Controllers\TowerController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
@@ -251,6 +253,18 @@
     <Compile Include="Migrations\201607190258039_user.Designer.cs">
       <DependentUpon>201607190258039_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607210047238_commom places.cs" />
+    <Compile Include="Migrations\201607210047238_commom places.Designer.cs">
+      <DependentUpon>201607210047238_commom places.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607210149055_commom places v1.cs" />
+    <Compile Include="Migrations\201607210149055_commom places v1.Designer.cs">
+      <DependentUpon>201607210149055_commom places v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607210348044_commom places v2.cs" />
+    <Compile Include="Migrations\201607210348044_commom places v2.Designer.cs">
+      <DependentUpon>201607210348044_commom places v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressModel.cs" />
@@ -265,6 +279,7 @@
     <Compile Include="Models\OccurrenceModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\OutSourcerModel.cs" />
+    <Compile Include="Models\ScheduleModel.cs" />
     <Compile Include="Models\TowerModel.cs" />
     <Compile Include="Models\UnitModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -412,6 +427,16 @@
     <Content Include="Views\Notification\Details.cshtml" />
     <Content Include="Views\Notification\Edit.cshtml" />
     <Content Include="Views\Notification\Index.cshtml" />
+    <Content Include="Views\CommonPlace\Create.cshtml" />
+    <Content Include="Views\CommonPlace\Delete.cshtml" />
+    <Content Include="Views\CommonPlace\Details.cshtml" />
+    <Content Include="Views\CommonPlace\Edit.cshtml" />
+    <Content Include="Views\CommonPlace\Index.cshtml" />
+    <Content Include="Views\Schedule\Create.cshtml" />
+    <Content Include="Views\Schedule\Delete.cshtml" />
+    <Content Include="Views\Schedule\Details.cshtml" />
+    <Content Include="Views\Schedule\Edit.cshtml" />
+    <Content Include="Views\Schedule\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -448,6 +473,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607190258039_user.resx">
       <DependentUpon>201607190258039_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607210047238_commom places.resx">
+      <DependentUpon>201607210047238_commom places.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607210149055_commom places v1.resx">
+      <DependentUpon>201607210149055_commom places v1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607210348044_commom places v2.resx">
+      <DependentUpon>201607210348044_commom places v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

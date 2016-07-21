@@ -7,7 +7,7 @@
 <h2>Condomínio</h2>
 
 <p>
-    @Html.ActionLink("Novo", "Create")
+    @Html.ActionLink("Áreas comuns", "Index", "CommonPlace")
 </p>
 <div class="table-responsive">
     <table class="table table-hover table-striped">
@@ -33,7 +33,7 @@
                 <td>
                     @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
                     @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                    @*@Html.ActionLink("Excluir", "Delete", new { id = item.ID })*@
                 </td>
             </tr>
         }

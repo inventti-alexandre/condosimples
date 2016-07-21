@@ -306,6 +306,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\CondoSimples - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\CondoSimples - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\condosimplestg - Web Deploy.pubxml" />

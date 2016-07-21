@@ -18,6 +18,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ParkingSlots)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Towers)
+            </th>
             <th></th>
         </tr>
 
@@ -31,8 +34,11 @@
                     @Html.DisplayFor(modelItem => item.ParkingSlots)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Towers)
+                </td>
+                <td>
                     @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.ID })
                     @*@Html.ActionLink("Excluir", "Delete", new { id = item.ID })*@
                 </td>
             </tr>

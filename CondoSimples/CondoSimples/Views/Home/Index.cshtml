@@ -9,9 +9,38 @@
     <p class="lead">Bem-vindo!</p>
 </div>
 
+<section class="container reset-col margin-bottom">
+    <h2>Notificações</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Mensagem
+                </th>
+                <th>
+                    Data
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.Notification)
+            {
+                <tr>
+                    <td>
+                        @item.Message
+                    </td>
+                    <td>
+                        @item.DateRegister
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
 @if(User.IsInRole("Sindico") || User.IsInRole("Condomino"))
 {
-<section class="container reset-col">
+<section class="container reset-col margin-bottom">
     <h2>Mural</h2>
     <table class="table table-hover">
         <thead>
@@ -42,7 +71,7 @@
     </table>
 </section>
 
-<section class="container reset-col">
+<section class="container reset-col margin-bottom">
     <h2>Solicitações de Empréstimo</h2>
     <table class="table table-hover">
         <thead>
@@ -77,32 +106,5 @@
     </table>
 </section>
 
-<section class="container reset-col">
-    <h2>Notificações</h2>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>
-                    Mensagem
-                </th>
-                <th>
-                    Data
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in ViewBag.Notification)
-            {
-                <tr>
-                    <td>
-                        @item.Message
-                    </td>
-                    <td>
-                        @item.DateRegister
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</section>
+
 }

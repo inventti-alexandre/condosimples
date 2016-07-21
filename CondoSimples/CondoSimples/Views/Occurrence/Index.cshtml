@@ -48,7 +48,7 @@
                 <td>
                     @if (!item.Solved)
                 {
-                        @Html.ActionLink("Alterar", "Edit", new { id = item.ID }) @Html.Raw("|")
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID }) @Html.Raw("|")
                     }
                     @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
                     @Html.ActionLink("Excluir", "Delete", new { id = item.ID })

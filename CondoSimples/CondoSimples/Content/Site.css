@@ -129,6 +129,15 @@ li.login-btn {
 .table {
     margin-bottom: 0;
 }
+.margin-bottom {
+    margin-bottom: 15px;
+}
+.nav > li > a {
+    padding: 10px 12px;
+}
+li > a.logout {
+    padding: 15px;
+}
 
 @media(max-width: 767px) {
     .row {

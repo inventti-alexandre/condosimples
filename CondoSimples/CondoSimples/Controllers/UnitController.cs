@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CondoSimples.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CondoSimples.Controllers
 {
@@ -18,7 +19,9 @@ namespace CondoSimples.Controllers
         // GET: Unit
         public ActionResult Index()
         {
-            var unitModels = db.UnitModels.Include(u => u.Tower);
+            var user = db.Users.Find(User.Identity.GetUserId());
+
+            var unitModels = db.UnitModels.Include(i => i.Tower).Include(i => i.Tower.Condo).Where(x => x.Tower.Condo.ID == user.Condo_ID);
             return View(unitModels.ToList());
         }
 
@@ -29,7 +32,7 @@ namespace CondoSimples.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UnitModel unitModel = db.UnitModels.Find(id);
+            UnitModel unitModel = db.UnitModels.Include(i => i.Tower).FirstOrDefault(x => x.ID == id);
             if (unitModel == null)
             {
                 return HttpNotFound();
@@ -40,7 +43,9 @@ namespace CondoSimples.Controllers
         // GET: Unit/Create
         public ActionResult Create()
         {
-            ViewBag.Tower_ID = new SelectList(db.TowerModels, "ID", "Name");
+            var user = db.Users.Find(User.Identity.GetUserId());
+
+            ViewBag.Tower_ID = new SelectList(db.TowerModels.Include(i => i.Condo).Where(x => x.Condo.ID == user.Condo_ID) , "ID", "Name");
             return View();
         }
 
@@ -58,7 +63,8 @@ namespace CondoSimples.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Tower_ID = new SelectList(db.TowerModels, "ID", "Name", unitModel.Tower_ID);
+            var user = db.Users.Find(User.Identity.GetUserId());
+            ViewBag.Tower_ID = new SelectList(db.TowerModels.Include(i => i.Condo).Where(x => x.Condo.ID == user.Condo_ID), "ID", "Name", unitModel.Tower_ID);
             return View(unitModel);
         }
 
@@ -69,12 +75,13 @@ namespace CondoSimples.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UnitModel unitModel = db.UnitModels.Find(id);
+            UnitModel unitModel = db.UnitModels.Include(i => i.Tower).FirstOrDefault(x => x.ID == id);
             if (unitModel == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Tower_ID = new SelectList(db.TowerModels, "ID", "Name", unitModel.Tower_ID);
+            var user = db.Users.Find(User.Identity.GetUserId());
+            ViewBag.Tower_ID = new SelectList(db.TowerModels.Include(i => i.Condo).Where(x => x.Condo.ID == user.Condo_ID), "ID", "Name", unitModel.Tower_ID);
             return View(unitModel);
         }
 
@@ -91,7 +98,8 @@ namespace CondoSimples.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Tower_ID = new SelectList(db.TowerModels, "ID", "Name", unitModel.Tower_ID);
+            var user = db.Users.Find(User.Identity.GetUserId());
+            ViewBag.Tower_ID = new SelectList(db.TowerModels.Include(i => i.Condo).Where(x => x.Condo.ID == user.Condo_ID), "ID", "Name", unitModel.Tower_ID);
             return View(unitModel);
         }
 

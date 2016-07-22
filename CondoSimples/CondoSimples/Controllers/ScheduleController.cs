@@ -18,10 +18,14 @@ namespace CondoSimples.Controllers
         // GET: Schedule
         public ActionResult Index()
         {
+            var user = db.Users.Find(User.Identity.GetUserId());
+
             return View(db.ScheduleModels.Include(i => i.Place)
                                             .Include(i => i.User)
                                             .Include(i => i.User.Unit)
-                                            .Include(i => i.User.Unit.Tower).ToList());
+                                            .Include(i => i.User.Unit.Tower)
+                                            .Include(i => i.User.Unit.Tower.Condo)
+                                            .Where(x => x.User.Unit.Tower.Condo.ID == user.Condo_ID).ToList());
         }
 
         // GET: Schedule/Details/5

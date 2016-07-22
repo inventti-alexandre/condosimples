@@ -20,7 +20,7 @@ namespace CondoSimples.Controllers
         public ActionResult Index()
         {
             var user = db.Users.Find(User.Identity.GetUserId());
-            return View(db.CondoModels.Where(x => x.ID == user.Condo_ID).ToList());
+            return View(db.CondoModels.Include(i => i.Address).Where(x => x.ID == user.Condo_ID).ToList());
         }
 
         // GET: Condo/Details/5
@@ -52,7 +52,7 @@ namespace CondoSimples.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,ParkingSlots,Address")] CondoModel condoModel)
+        public ActionResult Create([Bind(Include = "ID,Name,ParkingSlots")] CondoModel condoModel)
         {
             if (ModelState.IsValid)
             {
@@ -87,17 +87,6 @@ namespace CondoSimples.Controllers
 
                     db.TowerModels.Add(tower);
                     db.SaveChanges();
-
-                    //for (int u = 0; u < nUnits; u++)
-                    //{
-                    //    UnitModel unit = new UnitModel();
-                    //    unit.Name = String.Format("{0} - Unidade {1}", tower.Name, u + 1);
-                    //    unit.Tower_ID = tower.ID;
-                    //    unit.Tower = tower;
-
-                    //    db.UnitModels.Add(unit);
-                    //    db.SaveChanges();
-                    //}
                 }
 
                 TempData["adm"] = "S";
@@ -115,7 +104,7 @@ namespace CondoSimples.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CondoModel condoModel = db.CondoModels.Find(id);
+            CondoModel condoModel = db.CondoModels.Include(i => i.Address).FirstOrDefault(x => x.ID == id);
             if (condoModel == null)
             {
                 return HttpNotFound();
@@ -134,6 +123,16 @@ namespace CondoSimples.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(condoModel).State = EntityState.Modified;
+                db.SaveChanges();
+
+                var condo = db.CondoModels.Include(i => i.Address).FirstOrDefault(x => x.ID == condoModel.ID);
+                condo.Address.CEP = Request.Form["CEP"];
+                condo.Address.Street = Request.Form["Street"];
+                condo.Address.Number = Request.Form["Number"];
+                condo.Address.City = Request.Form["City"];
+                condo.Address.State = Request.Form["State"];
+
+                db.Entry(condo.Address).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");

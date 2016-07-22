@@ -7,7 +7,9 @@
 <h2>Condomínio</h2>
 
 <p>
-    @Html.ActionLink("Áreas comuns", "Index", "CommonPlace")
+    @Html.ActionLink("Áreas comuns", "Index", "CommonPlace") |
+    @Html.ActionLink("Torres", "Index", "Tower") |
+    @Html.ActionLink("Unidades", "Index", "Unit")
 </p>
 <div class="table-responsive">
     <table class="table table-hover table-striped">
@@ -19,7 +21,7 @@
                 @Html.DisplayNameFor(model => model.ParkingSlots)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Towers)
+                Endereço
             </th>
             <th></th>
         </tr>
@@ -34,7 +36,7 @@
                     @Html.DisplayFor(modelItem => item.ParkingSlots)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Towers)
+                    @Html.DisplayFor(modelItem => item.Address.Street), @Html.DisplayFor(modelItem => item.Address.Number)
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |

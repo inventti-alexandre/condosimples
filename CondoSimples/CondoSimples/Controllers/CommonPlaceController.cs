@@ -19,7 +19,9 @@ namespace CondoSimples.Controllers
         // GET: CommonPlace
         public ActionResult Index()
         {
-            return View(db.CommonPlaceModels.ToList());
+            var user = db.Users.Find(User.Identity.GetUserId());
+
+            return View(db.CommonPlaceModels.Include(i => i.Condo).Where(x => x.Condo.ID == user.Condo_ID).ToList());
         }
 
         // GET: CommonPlace/Details/5

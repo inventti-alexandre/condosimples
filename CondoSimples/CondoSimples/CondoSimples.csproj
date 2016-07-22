@@ -265,6 +265,10 @@
     <Compile Include="Migrations\201607210348044_commom places v2.Designer.cs">
       <DependentUpon>201607210348044_commom places v2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607220005191_mudanca model.cs" />
+    <Compile Include="Migrations\201607220005191_mudanca model.Designer.cs">
+      <DependentUpon>201607220005191_mudanca model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressModel.cs" />
@@ -483,6 +487,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607210348044_commom places v2.resx">
       <DependentUpon>201607210348044_commom places v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607220005191_mudanca model.resx">
+      <DependentUpon>201607220005191_mudanca model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

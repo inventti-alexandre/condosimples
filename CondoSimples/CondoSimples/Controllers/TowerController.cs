@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CondoSimples.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CondoSimples.Controllers
 {
@@ -18,7 +19,9 @@ namespace CondoSimples.Controllers
         // GET: Tower
         public ActionResult Index()
         {
-            var towerModels = db.TowerModels.Include(t => t.Condo);
+            var user = db.Users.Find(User.Identity.GetUserId());
+
+            var towerModels = db.TowerModels.Include(t => t.Condo).Where(x => x.Condo.ID == user.Condo_ID);
             return View(towerModels.ToList());
         }
 

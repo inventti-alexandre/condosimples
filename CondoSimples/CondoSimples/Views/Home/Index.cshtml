@@ -9,102 +9,167 @@
     <p class="lead">Bem-vindo!</p>
 </div>
 
+@if (ViewBag.UrlCondo != null)
+{
+    <section>
+        <p>
+            Síndico, divulgue a seguinte url para o cadastro dos condôminos:
+            <br />
+            @ViewBag.UrlCondo
+        </p>
+    </section>
+}
+
+
 <section class="container reset-col margin-bottom">
     <h2>Notificações</h2>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>
-                    Mensagem
-                </th>
-                <th>
-                    Data
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in ViewBag.Notification)
-            {
+    @if (ViewBag.Notification.Count > 0)
+    {
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td>
-                        @item.Message
-                    </td>
-                    <td>
-                        @item.DateRegister
-                    </td>
+                    <th>
+                        Mensagem
+                    </th>
+                    <th>
+                        Data
+                    </th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.Notification)
+                {
+                    <tr>
+                        <td class="list-group-item-text">
+                            @item.Message
+                        </td>
+                        <td>
+                            @item.DateRegister
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <span>Nenhuma notificação.</span>
+    }
 </section>
 
-@if(User.IsInRole("Sindico") || User.IsInRole("Condomino"))
+
+@if (User.IsInRole("Sindico") || User.IsInRole("Condomino"))
 {
-<section class="container reset-col margin-bottom">
-    <h2>Mural</h2>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Post)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.User)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in ViewBag.Post)
-            {
+
+    <section class="container reset-col margin-bottom">
+        <h2>Mural</h2>
+        @if (ViewBag.Post.Count > 0)
+        {
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td>
-                        <p class="list-group-item-text">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Post)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.User)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.Post)
+                {
+                    <tr>
+                        <td class="list-group-item-text">
                             @item.Post
-                        </p>
-                    </td>
-                    <td>
-                        @item.User.Email
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</section>
+                        </td>
+                        <td>
+                            @item.User.Email
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        }else{
+        <span>Nenhuma postagem no mural.</span>
+        }
+    </section>
 
-<section class="container reset-col margin-bottom">
-    <h2>Solicitações de Empréstimo</h2>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>
-                    Quantidade
-                </th>
-                <th>
-                    Descrição
-                </th>
-                <th>
-                    Usuário Solicitante
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in ViewBag.Borrow)
-            {
+
+
+    <section class="container reset-col margin-bottom">
+        <h2>Solicitações de Empréstimo</h2>
+        @if (ViewBag.Borrow.Count > 0)
+        {
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td>
-                        @item.Quantity
-                    </td>
-                    <td>
-                        @item.Description
-                    </td>
-                    <td>
-                        @item.UserRequest.Email
-                    </td>
+                    <th>
+                        Quantidade
+                    </th>
+                    <th>
+                        Descrição
+                    </th>
+                    <th>
+                        Usuário Solicitante
+                    </th>
                 </tr>
-            }
-        </tbody>
-    </table>
-</section>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.Borrow)
+                {
+                    <tr>
+                        <td>
+                            @item.Quantity
+                        </td>
+                        <td>
+                            @item.Description
+                        </td>
+                        <td>
+                            @item.UserRequest.Email
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        }else{
+        <span>Nenhum empréstimo solicitado.</span>
+        }
+    </section>
 
-
+    <section class="container reset-col margin-bottom">
+        <h2>Reserva de áreas comuns</h2>
+        @if (ViewBag.Schedule.Count > 0)
+        {
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Data reserva
+                        </th>
+                        <th>
+                            Área
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.Schedule)
+                    {
+                        <tr>
+                            <td>
+                                @item.DateSchedule
+                            </td>
+                            <td>
+                                @item.Place.Name
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <span>Nenhuma reserva realizada.</span>
+        }
+    </section>
 }

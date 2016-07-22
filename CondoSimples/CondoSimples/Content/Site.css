@@ -135,8 +135,14 @@ li.login-btn {
 .nav > li > a {
     padding: 10px 12px;
 }
-li > a.logout {
+li > a.logout, li > a#loginLink {
     padding: 15px;
+}
+#addTowerUnit {
+    margin-top: 15px;
+}
+#dvTowers, .upload, .towerId {
+    padding-top: 9px;
 }
 
 @media(max-width: 767px) {
@@ -162,5 +168,8 @@ li > a.logout {
     }
     .body-content {
         min-height: initial;
+    }
+    li > a#loginLink {
+    padding: 8px 15px;
     }
 }

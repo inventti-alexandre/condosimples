@@ -139,6 +139,8 @@ namespace CondoSimples.Controllers
             }
 
             ViewBag.TowerId = new SelectList(db.TowerModels.Include(c => c.Condo).Where(x => x.Condo.ID == idCondo).ToList(), "Id", "Name");
+            ViewBag.CondoId = idCondo;
+
             return View(userModel);
         }
 

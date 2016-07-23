@@ -36,7 +36,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.User.Email)
                 </td>
-                <td>
+                <td class="col-md-5">
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
@@ -47,12 +47,16 @@
                 </td>
                 <td>
                     @if (!item.Solved)
-                {
-                        @Html.ActionLink("Editar", "Edit", new { id = item.ID }) @Html.Raw("|")
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID })
                     }
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                    @if (User.IsInRole("Sindico"))
+                    {
+                        @Html.Raw("|")
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                    }
                 </td>
+
             </tr>
         }
 

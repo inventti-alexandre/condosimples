@@ -4,7 +4,7 @@
     ViewBag.Title = "Cadastrar novo funcionário";
 }
 
-<h2>Novo</h2>
+<h2>Novo funcionário</h2>
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
@@ -71,7 +71,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Foto</label>
             <div class="col-md-10">
-                <input type="file" name="Image" accept="image/jpeg, image/jpg" />
+                <input type="file" name="Image" accept="image/jpeg, image/jpg" class="upload"/>
             </div>
         </div>
 

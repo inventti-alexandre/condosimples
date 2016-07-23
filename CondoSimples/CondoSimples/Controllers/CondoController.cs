@@ -31,7 +31,7 @@ namespace CondoSimples.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CondoModel condoModel = db.CondoModels.Find(id);
+            CondoModel condoModel = db.CondoModels.Include(i => i.Address).FirstOrDefault(x => x.ID == id);
             if (condoModel == null)
             {
                 return HttpNotFound();
@@ -60,6 +60,7 @@ namespace CondoSimples.Controllers
                 address.CEP = Request.Form["CEP"];
                 address.Street = Request.Form["Street"];
                 address.Number = Request.Form["Number"];
+                address.Neighborhood = Request.Form["Neighborhood"];
                 address.City = Request.Form["City"];
                 address.State = Request.Form["State"];
 
@@ -129,6 +130,7 @@ namespace CondoSimples.Controllers
                 condo.Address.CEP = Request.Form["CEP"];
                 condo.Address.Street = Request.Form["Street"];
                 condo.Address.Number = Request.Form["Number"];
+                condo.Address.Neighborhood = Request.Form["Neighborhood"];
                 condo.Address.City = Request.Form["City"];
                 condo.Address.State = Request.Form["State"];
 

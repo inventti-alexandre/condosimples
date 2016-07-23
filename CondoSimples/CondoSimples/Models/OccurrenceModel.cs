@@ -11,6 +11,7 @@ namespace CondoSimples.Models
     {
         public int ID { get; set; }
         [Display(Name = "Ocorrência")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [Display(Name = "Data de registro")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy hh:mm}")]

@@ -13,6 +13,7 @@ namespace CondoSimples.Models
     {
         public int Id { get; set; }
         [Display(Name = "Publicação")]
+        [DataType(DataType.MultilineText)]
         [Required]
         public string Post { get; set; }
 

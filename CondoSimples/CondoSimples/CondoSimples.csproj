@@ -269,6 +269,10 @@
     <Compile Include="Migrations\201607220005191_mudanca model.Designer.cs">
       <DependentUpon>201607220005191_mudanca model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607230311044_bairro.cs" />
+    <Compile Include="Migrations\201607230311044_bairro.Designer.cs">
+      <DependentUpon>201607230311044_bairro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressModel.cs" />
@@ -293,6 +297,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SMS\SMSHandler.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -490,6 +495,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607220005191_mudanca model.resx">
       <DependentUpon>201607220005191_mudanca model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607230311044_bairro.resx">
+      <DependentUpon>201607230311044_bairro.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

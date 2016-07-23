@@ -62,6 +62,7 @@ namespace CondoSimples.Controllers
                     address.CEP = Request.Form["CEP"];
                     address.Street = Request.Form["Street"];
                     address.Number = Request.Form["Number"];
+                    address.Neighborhood = Request.Form["Neighborhood"];
                     address.City = Request.Form["City"];
                     address.State = Request.Form["State"];
 
@@ -121,6 +122,7 @@ namespace CondoSimples.Controllers
                 address.CEP = Request.Form["CEP"];
                 address.Street = Request.Form["Street"];
                 address.Number = Request.Form["Number"];
+                address.Neighborhood = Request.Form["Neighborhood"];
                 address.City = Request.Form["City"];
                 address.State = Request.Form["State"];
 

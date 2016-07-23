@@ -9,50 +9,53 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DateSchedule)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Place.Name)
-        </th>
-        @if (User.IsInRole("Sindico"))
-        {
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <tr>
             <th>
-                @Html.DisplayNameFor(model => model.User.Unit.Tower.Name)
+                @Html.DisplayNameFor(model => model.DateSchedule)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User.Unit.Name)
-            </th>        
-            <th></th>
-        }
-    </tr>
+                @Html.DisplayNameFor(model => model.Place.Name)
+            </th>
+            @if (User.IsInRole("Sindico"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.User.Unit.Tower.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.Unit.Name)
+                </th>
+                <th></th>
+            }
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateSchedule)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Place.Name)
-        </td>
-        @if (User.IsInRole("Sindico"))
+        @foreach (var item in Model)
         {
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Unit.Tower.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Unit.Name)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateSchedule)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Place.Name)
+                </td>
+                @if (User.IsInRole("Sindico"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Unit.Tower.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Unit.Name)
+                    </td>
 
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
-            </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                    </td>
+                }
+            </tr>
         }
-    </tr>
-}
 
-</table>
+    </table>
+    </div>

@@ -9,6 +9,7 @@
                 // Limpa valores do formulário de cep.
                 $("#Street").val("");
                 $("#Number").val("");
+                $("#Neighborhood").val("");
                 $("#City").val("");
                 $("#State").val("");
             }
@@ -30,6 +31,7 @@
 
                         //Preenche os campos com "..." enquanto consulta webservice.
                         $("#Street").val("...")
+                        $("#Neighborhood").val("");
                         $("#City").val("...")
                         $("#State").val("...")
 
@@ -39,7 +41,7 @@
                             if (!("erro" in dados)) {
                                 //Atualiza os campos com os valores da consulta.
                                 $("#Street").val(dados.logradouro);
-                                $("#bairro").val(dados.bairro);
+                                $("#Neighborhood").val(dados.bairro);
                                 $("#City").val(dados.localidade);
                                 $("#State").val(dados.uf);
                             } //end if.
@@ -90,6 +92,14 @@
         <div class="col-md-10">
             @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
             @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Neighborhood, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Neighborhood, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+            @Html.ValidationMessageFor(model => model.Neighborhood, "", new { @class = "text-danger" })
         </div>
     </div>
 

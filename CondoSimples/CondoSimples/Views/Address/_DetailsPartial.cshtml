@@ -1,7 +1,7 @@
 ﻿@model CondoSimples.Models.AddressModel
 
 <div>
-    <h4>AddressModel</h4>
+    <h4>Endereço</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -26,6 +26,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Neighborhood)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Neighborhood)
         </dd>
 
         <dt>

@@ -144,6 +144,30 @@ li > a.logout, li > a#loginLink {
 #dvTowers, .upload, .towerId {
     padding-top: 9px;
 }
+.post-image img {
+    max-height: 150px;
+    max-width: 200px;
+}
+.table > tbody > tr > th {
+    vertical-align: middle;
+}
+.form-control.box-area, .box-area {
+    width: 65%;
+    height: 200px;
+}
+input.check-box {
+    height: 38px;
+    padding-top: 9px;
+    width: 28px;
+}
+.form-control.search {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+.checkbox input[type="checkbox"] {
+    position: relative;
+    margin: 0 0;
+}
 
 @media(max-width: 767px) {
     .row {

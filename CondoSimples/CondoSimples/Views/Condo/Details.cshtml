@@ -28,6 +28,7 @@
 
     </dl>
 </div>
+    @Html.Partial("~/Views/Address/_DetailsPartial.cshtml", Model.Address)
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Voltar", "Index")

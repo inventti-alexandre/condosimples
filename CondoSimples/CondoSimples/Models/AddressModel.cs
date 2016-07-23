@@ -16,6 +16,8 @@ namespace CondoSimples.Models
         public string Street { get; set; }
         [Display(Name = "Nº")]
         public string Number { get; set; }
+        [Display(Name = "Bairro")]
+        public string Neighborhood { get; set; }
         [Display(Name = "Cidade")]
         public string City { get; set; }
         [Display(Name = "Estado")]

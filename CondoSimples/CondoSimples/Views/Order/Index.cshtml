@@ -4,11 +4,15 @@
     ViewBag.Title = "Index";
 }
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
 <h2>Encomendas e correspondências recebidas</h2>
 
-<p>
+<section class="report">
     @Html.ActionLink("Registrar nova encomenda", "Create")
-</p>
+
+    <button id="print" class="btn btn-default pull-right" onclick="printPage();">Imprimir relatório</button>
+</section>
 <div class="table-responsive">
     <table class="table table-hover table-striped">
         <tr>
@@ -38,3 +42,9 @@
 
     </table>
 </div>
+
+<script>
+    function printPage() {
+        window.print();
+    }
+</script>

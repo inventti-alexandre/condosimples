@@ -18,7 +18,7 @@ namespace CondoSimples.Models
         public DateTime DateOccurrence { get; set; }
         public CondoModel Condo { get; set; }
         [Display(Name = "Usuário")]
-        public UserModel User { get; set; }
+        public ApplicationUser User { get; set; }
         [Display(Name = "Resolvido")]
         public bool Solved { get; set; }
     }

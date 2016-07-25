@@ -75,7 +75,7 @@ namespace CondoSimples.Controllers
                 occurrenceModel.Condo = db.CondoModels.First(x => x.ID == user.Condo_ID);
                 occurrenceModel.DateOccurrence = DateTime.Now;
                 occurrenceModel.Solved = false;
-                occurrenceModel.User = db.UserModels.First(x => x.User.Id == user.Id);
+                occurrenceModel.User = db.Users.FirstOrDefault(x => x.Id == user.Id);
 
                 db.OccurrenceModels.Add(occurrenceModel);
                 db.SaveChanges();

@@ -56,9 +56,11 @@ namespace CondoSimples.Controllers
         {
             if (ModelState.IsValid)
             {
-                MailHandler.SendMailToUs(message, email, subject);
+                string body = string.Format("De: {0}<br/>Assunto: {1}<br/>Mensagem: {2}", email, subject, message);
 
-                return RedirectToAction("Index");
+                MailHandler.SendMail(body, "rdgs.rafael@gmail.com", "Contato");                
+
+                return RedirectToAction("About");
             }
 
             return View();

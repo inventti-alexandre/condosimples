@@ -20,7 +20,8 @@ namespace CondoSimples.Controllers
         [Authorize(Roles = "Empregado")]
         public ActionResult Index()
         {
-            return View(db.OrderModels.ToList());
+            var user = db.Users.Find(User.Identity.GetUserId());
+            return View(db.OrderModels.Include(u => u.UserRecipient).Include(u => u.UserRecipient.User).Where(x => x.UserRecipient.User.Condo_ID == user.Condo_ID && x.DateReceived.Month == DateTime.Now.Month).ToList());
         }
 
         // GET: Order/IndexByUser

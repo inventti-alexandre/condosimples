@@ -221,57 +221,9 @@
     </Compile>
     <Compile Include="Mail\MailHandler.cs" />
     <Compile Include="Membership\MembershipHandler.cs" />
-    <Compile Include="Migrations\201606290337074_Initial.cs" />
-    <Compile Include="Migrations\201606290337074_Initial.Designer.cs">
-      <DependentUpon>201606290337074_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607010008088_Occurrence.cs" />
-    <Compile Include="Migrations\201607010008088_Occurrence.Designer.cs">
-      <DependentUpon>201607010008088_Occurrence.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607010029524_Occurrence1.cs" />
-    <Compile Include="Migrations\201607010029524_Occurrence1.Designer.cs">
-      <DependentUpon>201607010029524_Occurrence1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607081912285_tentativa.cs" />
-    <Compile Include="Migrations\201607081912285_tentativa.Designer.cs">
-      <DependentUpon>201607081912285_tentativa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607120154129_tower.cs" />
-    <Compile Include="Migrations\201607120154129_tower.Designer.cs">
-      <DependentUpon>201607120154129_tower.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607130024052_Notification.cs" />
-    <Compile Include="Migrations\201607130024052_Notification.Designer.cs">
-      <DependentUpon>201607130024052_Notification.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607190253202_employee.cs" />
-    <Compile Include="Migrations\201607190253202_employee.Designer.cs">
-      <DependentUpon>201607190253202_employee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607190258039_user.cs" />
-    <Compile Include="Migrations\201607190258039_user.Designer.cs">
-      <DependentUpon>201607190258039_user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607210047238_commom places.cs" />
-    <Compile Include="Migrations\201607210047238_commom places.Designer.cs">
-      <DependentUpon>201607210047238_commom places.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607210149055_commom places v1.cs" />
-    <Compile Include="Migrations\201607210149055_commom places v1.Designer.cs">
-      <DependentUpon>201607210149055_commom places v1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607210348044_commom places v2.cs" />
-    <Compile Include="Migrations\201607210348044_commom places v2.Designer.cs">
-      <DependentUpon>201607210348044_commom places v2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607220005191_mudanca model.cs" />
-    <Compile Include="Migrations\201607220005191_mudanca model.Designer.cs">
-      <DependentUpon>201607220005191_mudanca model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201607230311044_bairro.cs" />
-    <Compile Include="Migrations\201607230311044_bairro.Designer.cs">
-      <DependentUpon>201607230311044_bairro.cs</DependentUpon>
+    <Compile Include="Migrations\201607250209106_initial.cs" />
+    <Compile Include="Migrations\201607250209106_initial.Designer.cs">
+      <DependentUpon>201607250209106_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -460,44 +412,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606290337074_Initial.resx">
-      <DependentUpon>201606290337074_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607010008088_Occurrence.resx">
-      <DependentUpon>201607010008088_Occurrence.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607010029524_Occurrence1.resx">
-      <DependentUpon>201607010029524_Occurrence1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607081912285_tentativa.resx">
-      <DependentUpon>201607081912285_tentativa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607120154129_tower.resx">
-      <DependentUpon>201607120154129_tower.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607130024052_Notification.resx">
-      <DependentUpon>201607130024052_Notification.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607190253202_employee.resx">
-      <DependentUpon>201607190253202_employee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607190258039_user.resx">
-      <DependentUpon>201607190258039_user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607210047238_commom places.resx">
-      <DependentUpon>201607210047238_commom places.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607210149055_commom places v1.resx">
-      <DependentUpon>201607210149055_commom places v1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607210348044_commom places v2.resx">
-      <DependentUpon>201607210348044_commom places v2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607220005191_mudanca model.resx">
-      <DependentUpon>201607220005191_mudanca model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201607230311044_bairro.resx">
-      <DependentUpon>201607230311044_bairro.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201607250209106_initial.resx">
+      <DependentUpon>201607250209106_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -61,9 +61,11 @@
                     @Html.DisplayFor(modelItem => item.UserLending.Email)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                    @if (item.UserLending == null)
+                    {
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID }) @Html.Raw(" | ")
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                    }
                 </td>
             </tr>
         }

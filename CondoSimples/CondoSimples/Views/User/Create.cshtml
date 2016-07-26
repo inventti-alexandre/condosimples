@@ -4,20 +4,29 @@
     ViewBag.Title = "Cadastro de usuário";
 }
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.maskedinput.js"></script>
+
+
 <h2>Cadastro de usuário</h2>
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <input type="hidden" name="idCondo" value="@ViewBag.CondoId" />
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <input type="text" name="fake-password-text" style="visibility:hidden;height:0px" />
+        <input type="password" name="fake-password" style="visibility:hidden;height:0px" />
+        <input type="password" name="fake-password1" style="visibility:hidden;height:0px" />
+
         <div class="form-group">
             @Html.LabelFor(model => model.CPF, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control", @id = "cpf" } })
                 @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,7 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Cel, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Cel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Cel, new { htmlAttributes = new { @class = "form-control", @id = "cel" } })
                 @Html.ValidationMessageFor(model => model.Cel, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -110,13 +119,13 @@
         <div class="form-group">
             <label class="control-label col-md-2">Número da unidade</label>
             <div class="col-md-10">
-                <input type="text" name="unit" class="form-control" required />
+                <input type="text" name="unit" class="form-control" required autocomplete="false" value="" />
             </div>
         </div>
         <div class="form-group">
             <label for="pass" class="control-label col-md-2">Senha</label>
             <div class="col-md-10">
-                <input type="password" name="pass" class="form-control" required/>
+                <input type="password" name="pass" class="form-control" autocomplete="false" required />
             </div>
         </div>
 
@@ -134,3 +143,12 @@
         </div>
     </div>
 }
+
+<script>
+    $('document').ready(function($)
+    {
+        $("#cpf").mask("999.999.999-99");
+        $("#cel").mask("(99) 99999-9999");
+        $("#Phone").mask("(99) 9999-9999");
+    });
+</script>

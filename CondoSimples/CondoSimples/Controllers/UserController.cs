@@ -35,7 +35,14 @@ namespace CondoSimples.Controllers
                                                                                                                                             || x.Email.Contains(txt)
                                                                                                                                             || x.Cel.Contains(txt)
                                                                                                                                             || x.CPF.Contains(txt)));
-                return View(userModels.ToList());
+
+                var lst = userModels.ToList();
+
+                if (lst.Count <= 0)
+                    ViewBag.Empty = "Nenhum registro encontrado.";
+
+
+                return View(lst);
             }else
             {
                 var userModels = db.UserModels.Include(u => u.Unit).Include(a => a.User).Where(x => x.User.Condo_ID == user.Condo_ID);

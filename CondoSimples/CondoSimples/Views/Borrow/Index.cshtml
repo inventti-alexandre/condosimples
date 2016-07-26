@@ -4,7 +4,7 @@
     ViewBag.Title = "Empréstimos";
 }
 
-<h2>Empréstimos</h2>
+<h2>Solicitações dos moradores</h2>
 
 <p>
     @Html.ActionLink("Nova solicitação", "Create") |
@@ -63,10 +63,12 @@
                     @Html.DisplayFor(modelItem => item.UserLending.Email)
                 </td>
                 <td>
-                    @Html.ActionLink("Emprestar Item", "Lend", new { id = item.ID }) |
-                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Emprestar Item", "Lend", new { id = item.ID })
+                    @if (User.IsInRole("Sindico"))
+                    {
+                        @Html.Raw(" | ")
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                    }
                 </td>
             </tr>
         }

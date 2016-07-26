@@ -25,7 +25,7 @@ namespace CondoSimples.Controllers
                                             .Include(i => i.User.Unit)
                                             .Include(i => i.User.Unit.Tower)
                                             .Include(i => i.User.Unit.Tower.Condo)
-                                            .Where(x => x.User.Unit.Tower.Condo.ID == user.Condo_ID && x.DateSchedule.Month == DateTime.Now.Month).ToList());
+                                            .Where(x => x.User.Unit.Tower.Condo.ID == user.Condo_ID && x.DateSchedule.Month >= DateTime.Now.Month).ToList());
         }
 
         // GET: Schedule/Details/5

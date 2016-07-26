@@ -46,13 +46,14 @@
                     @Html.DisplayFor(modelItem => item.Solved)
                 </td>
                 <td>
-                    @if (!item.Solved)
-                    {
-                        @Html.ActionLink("Editar", "Edit", new { id = item.ID })
-                    }
                     @if (User.IsInRole("Sindico"))
                     {
-                        @Html.Raw("|")
+                        if (!item.Solved)
+                        {
+                            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) @Html.Raw(" | ") 
+                        }
+
+
                         @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
                     }
                 </td>

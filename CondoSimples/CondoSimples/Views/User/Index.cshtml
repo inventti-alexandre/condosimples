@@ -7,7 +7,7 @@
 <h2>Condôminos cadastrados</h2>
 
 <form method="get" action="/User/Index">
-    <input type="search" name="txt" class="form-control search"/>
+    <input type="search" name="txt" class="form-control search" />
     <input type="submit" value="Pesquisar" class="btn btn-default" />
 </form>
 
@@ -73,7 +73,7 @@
                     @Html.DisplayFor(modelItem => item.Visitors)
                 </td>
                 <td class="button-group">
-                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }) 
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ID })
                     @Html.ActionLink("Detalhes", "Details", new { id = item.ID })
                     @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
                 </td>
@@ -81,4 +81,10 @@
         }
 
     </table>
+
+    @if (ViewBag.Empty != "")
+    {
+        <span>@ViewBag.Empty</span>
+    }
+
 </div>

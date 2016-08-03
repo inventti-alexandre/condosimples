@@ -18,6 +18,9 @@
 <div class="table-responsive">
     <table class="table table-hover table-striped">
         <tr>
+            <th class="user-photo">
+                Foto
+            </th>   
             <th class="user-unit">
                 @Html.DisplayNameFor(model => model.Unit.Name)
             </th>
@@ -48,6 +51,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td class="user-photo">
+                    <img src="" alt="" />
+                </td>
                 <td class="user-unit">
                     @Html.DisplayFor(modelItem => item.Unit.Name)
                 </td>

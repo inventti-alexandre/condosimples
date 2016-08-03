@@ -16,6 +16,9 @@
 <div class="table-responsive">
     <table class="table table-hover table-striped">
         <tr>
+            <th class="user-photo">
+                Foto
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -40,6 +43,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td class="user-photo">
+                    <img src="" alt="" />
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -58,11 +64,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.WorkShift)
                 </td>
-                <td>
+                <td class="button-group">
                     @if (User.IsInRole("Sindico"))
                     {
-                        @Html.ActionLink("Editar", "Edit", new { id = item.ID }) @Html.Raw("|")
-                        @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) @Html.Raw("|")
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID }) <br />
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) <br />
                         @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
                     }
                 </td>

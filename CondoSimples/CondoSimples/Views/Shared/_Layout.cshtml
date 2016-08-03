@@ -79,7 +79,11 @@
     </div>
     <footer class="standard-footer">
         <div class="container">
-            <p>&copy; @DateTime.Now.Year - CondoSimples</p>
+            <p>&copy; @DateTime.Now.Year - CondoSimples</p><br />
+            <div class="footer-links col-xs-12 text-center">
+                @Html.ActionLink("Contate-nos", "Contact", "Home")
+                <a href="~/Terms/Index">Termos de uso</a> <a href="~/Privacy/Index">Política de privacidade</a>
+            </div>
         </div>
     </footer>
 

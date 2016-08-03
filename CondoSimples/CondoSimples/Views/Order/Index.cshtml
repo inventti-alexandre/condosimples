@@ -22,6 +22,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
+            <th>
+                @Html.DisplayNameFor(EmployeeModel => EmployeeModel.UserEmployee)
+            </th>
+            @if (User.IsInRole("Empregado"))
+            {
+                <th>
+                    @Html.DisplayNameFor(UserModel => UserModel.UserRecipient)
+                </th>
+            }
             <th></th>
         </tr>
 
@@ -35,8 +44,17 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.UserEmployee)
+                </td>
+                @if (User.IsInRole("Empregado"))
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserRecipient.Unit)
+                    </td>
+                <td>
                     @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
                 </td>
+                }
             </tr>
         }
 

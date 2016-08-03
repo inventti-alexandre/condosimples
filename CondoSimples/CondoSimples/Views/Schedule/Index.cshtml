@@ -10,8 +10,10 @@
 
 <section class="report">
     @Html.ActionLink("Fazer nova reserva", "Create")
-
-    <button id="print" class="btn btn-default pull-right" onclick="printPage();">Imprimir relatório</button>
+    @if (User.IsInRole("Sindico"))
+    {
+        <button id="print" class="btn btn-default pull-right" onclick="printPage();">Imprimir relatório</button>
+    }
 </section>
 <div class="table-responsive">
     <table class="table table-hover table-striped">

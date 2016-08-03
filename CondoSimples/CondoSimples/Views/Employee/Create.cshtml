@@ -4,6 +4,9 @@
     ViewBag.Title = "Cadastrar novo funcionário";
 }
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.maskedinput.js"></script>
+
 <h2>Novo funcionário</h2>
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" })) 
@@ -14,6 +17,11 @@
         <h4>Funcionário</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <input type="text" name="fake-password-text" style="visibility:hidden;height:0px" />
+        <input type="password" name="fake-password" style="visibility:hidden;height:0px" />
+        <input type="password" name="fake-password1" style="visibility:hidden;height:0px" />
+
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -33,7 +41,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Cel, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Cel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Cel, new { htmlAttributes = new { @class = "form-control", @id = "cel" } })
                 @Html.ValidationMessageFor(model => model.Cel, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -47,7 +55,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DutyDays, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2 opcional-div">
+                @Html.LabelFor(model => model.DutyDays, htmlAttributes: new { @class = "control-label" })
+                <p class="opcional">Campo opcional</p>
+            </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DutyDays, new { htmlAttributes = new { @class = "form-control", @placeholder = "Seg-Ter-Sex-Dom" } })
                 @Html.ValidationMessageFor(model => model.DutyDays, "", new { @class = "text-danger" })
@@ -55,7 +66,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.WorkShift, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2 opcional-div">
+                @Html.LabelFor(model => model.WorkShift, htmlAttributes: new { @class = "control-label" })
+                <p class="opcional">Campo opcional</p>
+            </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.WorkShift, new { htmlAttributes = new { @class = "form-control", @placeholder = "9h-21h" } })
                 @Html.ValidationMessageFor(model => model.WorkShift, "", new { @class = "text-danger" })
@@ -86,3 +100,9 @@
 <div>
     @Html.ActionLink("Voltar", "Index")
 </div>
+<script>
+    $('document').ready(function($)
+    {
+        $("#cel").mask("(99) 99999-9999");
+    });
+</script>

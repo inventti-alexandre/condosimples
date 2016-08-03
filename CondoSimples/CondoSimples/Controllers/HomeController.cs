@@ -23,7 +23,7 @@ namespace CondoSimples.Controllers
             ViewBag.Condo = condo.Name;
             ViewBag.Post = db.BoardModels.Include(i => i.User).Where(x => x.User.Condo_ID == condo.ID).ToList();
             ViewBag.Borrow = db.BorrowModels.Include(u => u.UserRequest).Include(x => x.UserLending).Where(y => y.DateComplete == null && y.UserRequest.Id != user.Id && y.DateReturn > DateTime.Now && y.UserRequest.Condo_ID == user.Condo_ID && y.UserLending == null).ToList();
-            ViewBag.Schedule = db.ScheduleModels.Include(i => i.User).Include(i => i.User.User).Where(x => x.User.User.Id == user.Id).ToList();
+            ViewBag.Schedule = db.ScheduleModels.Include(i => i.Place).Include(i => i.User).Include(i => i.User.User).Where(x => x.User.User.Id == user.Id).ToList();
 
 
             DateTime notificationLimit = DateTime.Now.AddMonths(-1);

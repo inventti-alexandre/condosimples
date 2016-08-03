@@ -9,7 +9,7 @@ namespace CondoSimples.SMS
 {
     public class SMSHandler
     {
-        public bool SendSMS(string number, string message, ref string msgErro)
+        public static bool SendSMS(string number, string message, ref string msgErro)
         {
             bool functionReturnValue = false;
 

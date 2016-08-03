@@ -71,6 +71,7 @@
                 <table class="table table-hover table-striped">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Post)
                             </th>
@@ -83,6 +84,9 @@
                         @foreach (var item in ViewBag.Post)
                         {
                             <tr>
+                                <td class="post-image">
+                                    <img src=@string.Concat("https://condosimplestg.blob.core.windows.net/fotostg/board_", @item.Id,".jpg") alt="Imagem do mural" />
+                                </td>
                                 <td class="list-group-item-text">
                                     @item.Post
                                 </td>

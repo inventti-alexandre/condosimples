@@ -44,7 +44,7 @@
         {
             <tr>
                 <td class="user-photo">
-                    <img src="" alt="" />
+                    <img src=@string.Concat("https://condosimplestg.blob.core.windows.net/fotostg/employee_", @item.ID,".jpg") alt="Foto do funcionário" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)

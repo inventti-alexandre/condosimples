@@ -21,14 +21,21 @@ namespace CondoSimples.Controllers
         public ActionResult Index()
         {
             var user = db.Users.Find(User.Identity.GetUserId());
-            return View(db.OrderModels.Include(u => u.UserRecipient).Include(u => u.UserRecipient.User).Where(x => x.UserRecipient.User.Condo_ID == user.Condo_ID && x.DateReceived.Month == DateTime.Now.Month).ToList());
+            return View(db.OrderModels.Include(u => u.UserRecipient)
+                                        .Include(u => u.UserRecipient.User)
+                                        .Include(u => u.UserEmployee)
+                                        .Include(u => u.UserRecipient.Unit)
+                                        .Where(x => x.UserRecipient.User.Condo_ID == user.Condo_ID && x.DateReceived.Month == DateTime.Now.Month).ToList());
         }
 
         // GET: Order/IndexByUser
         public ActionResult IndexByUser()
         {
             var user = db.Users.Find(User.Identity.GetUserId());
-            return View(db.OrderModels.Include(u => u.UserRecipient).Include(u => u.UserRecipient.User).Where(x => x.UserRecipient.User.Id == user.Id).ToList());
+            return View(db.OrderModels.Include(u => u.UserRecipient)
+                                        .Include(u => u.UserRecipient.User)
+                                        .Include(u => u.UserEmployee)
+                                        .Where(x => x.UserRecipient.User.Id == user.Id).ToList());
         }
 
         // GET: Order/Create
@@ -87,6 +94,10 @@ namespace CondoSimples.Controllers
                 db.SaveChanges();
 
                 Mail.MailHandler.SendMail(orderModel.Description, orderModel.UserRecipient.Email, "Nova encomenda");
+
+                string errorSMS = string.Empty;
+                SMS.SMSHandler.SendSMS(orderModel.UserRecipient.Cel.Replace(" ","").Replace("-","").Replace("(","").Replace(")",""),
+                                        string.Format("Você recebeu uma encomenda"), ref errorSMS);
 
                 return RedirectToAction("Index");
             }

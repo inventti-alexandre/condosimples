@@ -44,16 +44,16 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserEmployee)
+                    @Html.DisplayFor(modelItem => item.UserEmployee.Name)
                 </td>
                 @if (User.IsInRole("Empregado"))
                 {
                     <td>
-                        @Html.DisplayFor(modelItem => item.UserRecipient.Unit)
+                        @Html.DisplayFor(modelItem => item.UserRecipient.Unit.Name)
                     </td>
-                <td>
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
-                </td>
+                    <td>
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                    </td>
                 }
             </tr>
         }

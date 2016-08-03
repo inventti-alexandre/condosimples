@@ -56,6 +56,9 @@ namespace CondoSimples.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = db.Users.Find(User.Identity.GetUserId());
+                towerModel.Condo = db.CondoModels.FirstOrDefault(x => x.ID == user.Condo_ID);
+
                 db.TowerModels.Add(towerModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -72,12 +75,11 @@ namespace CondoSimples.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TowerModel towerModel = db.TowerModels.Find(id);
+            TowerModel towerModel = db.TowerModels.Include(i => i.Condo).FirstOrDefault(x => x.ID == id);
             if (towerModel == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Condo_ID = new SelectList(db.CondoModels, "ID", "Name", towerModel.Condo.ID);
             return View(towerModel);
         }
 
@@ -90,6 +92,8 @@ namespace CondoSimples.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = db.Users.Find(User.Identity.GetUserId());
+                towerModel.Condo = db.CondoModels.FirstOrDefault(x => x.ID == user.Condo_ID);
                 db.Entry(towerModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

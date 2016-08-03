@@ -25,7 +25,8 @@ namespace CondoSimples.Controllers
         public ActionResult Index(string txt)
         {
             var user = db.Users.Find(User.Identity.GetUserId());
-            
+            ViewBag.CondoId = user.Condo_ID; 
+
             if (txt != string.Empty && txt != null)
             {
                 var userModels = db.UserModels.Include(u => u.Unit).Include(a => a.User).Where(x => x.User.Condo_ID == user.Condo_ID && (x.Name.Contains(txt) 

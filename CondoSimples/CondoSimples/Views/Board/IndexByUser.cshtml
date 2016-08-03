@@ -12,6 +12,7 @@
 <div class="table-responsive">
     <table class="table table-hover table-striped">
         <tr>
+            <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.Post)
             </th>
@@ -33,6 +34,10 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td class="post-image">
+
+                    <img src=@string.Concat("https://condosimplestg.blob.core.windows.net/fotostg/board_", @item.Id,".jpg") alt="Imagem do mural" />
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Post)
                 </td>

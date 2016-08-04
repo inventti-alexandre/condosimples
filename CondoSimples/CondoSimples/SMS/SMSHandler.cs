@@ -9,7 +9,7 @@ namespace CondoSimples.SMS
 {
     public class SMSHandler
     {
-        public static bool SendSMS(string number, string message, ref string msgErro)
+        public static bool SendSMS(string number, ref string msgErro)
         {
             bool functionReturnValue = false;
 
@@ -17,6 +17,7 @@ namespace CondoSimples.SMS
             string URL = "";
             string UserID = "beb6eba3-23cd-47fe-bfbd-270380d16634";
             string Token = "57879074";
+            string message = "Você recebeu uma encomenda";
 
             //Codifica a mensagem
             message = System.Web.HttpUtility.UrlEncode(message);

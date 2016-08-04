@@ -26,8 +26,7 @@
                 @if (User.IsInRole("Sindico"))
                 {
                     <ul class="nav navbar-nav">
-                        <li role="presentation">@Html.ActionLink("Home", "Index", "Home")</li>
-                        @*<li role="presentation">@Html.ActionLink("Meus dados", "Edit", "User")</li>*@
+                        <li role="presentation">@Html.ActionLink("Home", "Index", "Home")</li>                        
                         <li role="presentation">@Html.ActionLink("Condomínio", "Index", "Condo")</li>
                         <li role="presentation">@Html.ActionLink("Funcionários", "Index", "Employee")</li>
                         <li role="presentation">@Html.ActionLink("Usuários", "Index", "User")</li>
@@ -47,7 +46,6 @@
                     <ul class="nav navbar-nav">
                         <li role="presentation">@Html.ActionLink("Home", "Index", "Home")</li>
                         <li role="presentation">@Html.ActionLink("Funcionários", "Index", "Employee")</li>
-                        @*<li role="presentation">@Html.ActionLink("Meus dados", "Edit", "User")</li>*@
                         <li role="presentation">@Html.ActionLink("Mural", "Index", "Board")</li>
                         <li role="presentation">@Html.ActionLink("Ocorrências", "Index", "Occurrence")</li>
                         <li role="presentation">@Html.ActionLink("Empréstimos", "Index", "Borrow")</li>

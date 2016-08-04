@@ -154,17 +154,21 @@ namespace CondoSimples.Controllers
 
         // GET: User/Edit/5
         [Authorize]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, bool? logged)
         {
-            if (id == null)
-            {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            UserModel userModel;
+
+            if (id == null && logged == false)            
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            UserModel userModel = db.UserModels.Find(id);
-            if (userModel == null)
-            {
+            else if(id != null)            
+                userModel = db.UserModels.Find(id);
+            else
+                userModel = db.UserModels.Include(i => i.User).FirstOrDefault(x => x.User.Id == user.Id);
+
+            if (userModel == null)            
                 return HttpNotFound();
-            }
+                        
             ViewBag.Unit_ID = new SelectList(db.UnitModels, "ID", "Name", userModel.Unit_ID);
             return View(userModel);
         }
@@ -185,7 +189,10 @@ namespace CondoSimples.Controllers
                 if (Image != null)
                     StorageHandler.UploadImage(userModel.ID.ToString(), Image, "user_");
 
-                return RedirectToAction("Index");
+                if (User.IsInRole("Sindico"))
+                    return RedirectToAction("Index");
+                else
+                    return RedirectToAction("Index", "Home");
             }
             ViewBag.Unit_ID = new SelectList(db.UnitModels, "ID", "Name", userModel.Unit_ID);            
 

@@ -7,7 +7,7 @@
 
     <ul class="nav navbar-nav navbar-right pull-right hidden-xs">
         <li class="hello-user">
-            <span>Olá @User.Identity.GetUserName()!</span>
+            @Html.ActionLink(string.Concat("Olá ", @User.Identity.GetUserName(), "!"), "Edit", "User", new { logged = true }, new { @title = "Meus dados" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()" class="logout">Sair</a></li>
     </ul>

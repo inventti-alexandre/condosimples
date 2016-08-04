@@ -63,10 +63,17 @@ namespace CondoSimples.Controllers
                 db.SaveChanges();
 
                 var usersToSendMail = db.Users.Where(x => x.Condo_ID == notificationModel.Condo.ID).ToList();
+                var roleCondomino = db.Roles.First(x => x.Name == "Condomino");
 
                 foreach (ApplicationUser userToMail in usersToSendMail)
                 {
                     Mail.MailHandler.SendMail(notificationModel.Message, userToMail.Email, "Nova notificação");
+                    
+
+                    //if ((userToMail.Roles.First(x => x.RoleId == roleCondomino.Id)) != null)
+                    //{                     
+                    //    SMS.SMSHandler.SendSMS(userToMail.)
+                    //}
                 }
 
                 return RedirectToAction("Index");

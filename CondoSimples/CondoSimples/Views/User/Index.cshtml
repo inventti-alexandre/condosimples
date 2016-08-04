@@ -77,8 +77,8 @@
                 <td class="button-group">
                     @if (User.IsInRole("Sindico"))
                     {   
-                        @Html.ActionLink("Editar", "Edit", new { id = item.ID })
-                        @Html.ActionLink("Detalhes", "Details", new { id = item.ID })
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID })<br>
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.ID })<br>
                         @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
                     }
                 </td>

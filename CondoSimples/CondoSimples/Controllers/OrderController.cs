@@ -96,7 +96,7 @@ namespace CondoSimples.Controllers
                 Mail.MailHandler.SendMail(orderModel.Description, orderModel.UserRecipient.Email, "Nova encomenda");
 
                 string errorSMS = string.Empty;
-                SMS.SMSHandler.SendSMS(orderModel.UserRecipient.Cel, ref errorSMS);
+                SMS.SMSHandler.SendSMS(orderModel.UserRecipient.Cel, "CondoSimples - Você recebeu uma encomenda", ref errorSMS);
 
                 return RedirectToAction("Index");
             }

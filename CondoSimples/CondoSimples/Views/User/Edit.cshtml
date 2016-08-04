@@ -9,7 +9,7 @@
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Usuário</h4>
         <hr />
@@ -88,13 +88,20 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Unit_ID, "Unit_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Unit_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Unit_ID, "", new { @class = "text-danger" })
+        @if (User.IsInRole("Sindico"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Unit_ID, "Unit_ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Unit_ID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Unit_ID, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            @Html.DropDownList("Unit_ID", null, htmlAttributes: new { @style = "visibility:hidden" })
+        }
 
         <div class="form-group">
             <label class="control-label col-md-2">Foto</label>

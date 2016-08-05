@@ -45,7 +45,7 @@
                                 @item.Message
                             </td>
                             <td>
-                                @item.DateRegister
+                                @item.DateRegister.ToString("dd/MM/yyyy")
                             </td>
                         </tr>
                     }
@@ -168,7 +168,7 @@
                     {
                                     <tr>
                                         <td>
-                                            @item.DateSchedule
+                                            @item.DateSchedule.ToString("dd/MM/yyyy")
                                         </td>
                                         <td>
                                             @item.Place.Name

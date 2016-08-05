@@ -142,11 +142,13 @@ namespace CondoSimples.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BorrowModel borrowModel = db.BorrowModels.Find(id);
+            BorrowModel borrowModel = db.BorrowModels.FirstOrDefault(x => x.ID == id);
             if (borrowModel == null)
             {
                 return HttpNotFound();
             }
+
+            Mail.MailHandler.SendMail(borrowModel.Description, borrowModel.UserRequest.Email, "Solicitação de empréstimo atendida.");
 
             borrowModel.UserLending = db.Users.Find(User.Identity.GetUserId());
 

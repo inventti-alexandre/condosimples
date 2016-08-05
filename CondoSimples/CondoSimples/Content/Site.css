@@ -138,6 +138,9 @@ li.login-btn {
 li > a.logout, li > a#loginLink {
     padding: 15px;
 }
+li > a.logout {
+    margin-top: 10px;
+}
 #addTowerUnit {
     margin-top: 15px;
 }

@@ -9,9 +9,9 @@
 <h2>Encomendas e correspondências recebidas</h2>
 
 <section class="report">
-    @Html.ActionLink("Registrar nova encomenda", "Create")
+    @Html.ActionLink("Registrar nova encomenda", "Create", null, new { @class = "hidden-print" })
 
-    <button id="print" class="btn btn-default pull-right" onclick="printPage();">Imprimir relatório</button>
+    <button id="print" class="btn btn-default pull-right hidden-print" onclick="printPage();">Imprimir relatório</button>
 </section>
 <div class="table-responsive">
     <table class="table table-hover table-striped">
@@ -23,6 +23,9 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Received)
+            </th>
+            <th>
                 @Html.DisplayNameFor(EmployeeModel => EmployeeModel.UserEmployee)
             </th>
             @if (User.IsInRole("Empregado"))
@@ -31,7 +34,7 @@
                     @Html.DisplayNameFor(UserModel => UserModel.UserRecipient)
                 </th>
             }
-            <th></th>
+            <th class="hidden-print"></th>
         </tr>
 
         @foreach (var item in Model)
@@ -44,6 +47,9 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Received)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.UserEmployee.Name)
                 </td>
                 @if (User.IsInRole("Empregado"))
@@ -51,8 +57,13 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.UserRecipient.Unit.Name)
                     </td>
-                    <td>
+                    <td class="hidden-print">
                         @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                        @if (!item.Received)
+                        {
+                            <br>
+                            @Html.ActionLink("Marcar retirada", "Received", new { id = item.ID })
+                        }
                     </td>
                 }
             </tr>

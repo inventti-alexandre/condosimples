@@ -9,10 +9,10 @@
 <h2>Agenda de áreas comuns</h2>
 
 <section class="report">
-    @Html.ActionLink("Fazer nova reserva", "Create")
+    @Html.ActionLink("Fazer nova reserva", "Create", null , new { @class = "hidden-print" })
     @if (User.IsInRole("Sindico"))
     {
-        <button id="print" class="btn btn-default pull-right" onclick="printPage();">Imprimir relatório</button>
+        <button id="print" class="btn btn-default pull-right hidden-print" onclick="printPage();">Imprimir relatório</button>
     }
 </section>
 <div class="table-responsive">
@@ -32,7 +32,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.User.Unit.Name)
                 </th>
-                <th></th>
+                <th class="hidden-print"></th>
             }
         </tr>
 
@@ -54,7 +54,7 @@
                         @Html.DisplayFor(modelItem => item.User.Unit.Name)
                     </td>
 
-                    <td>
+                    <td class="hidden-print">
                         @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
                         @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
                         @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
@@ -65,6 +65,32 @@
 
     </table>
     </div>
+
+<h3 class="hidden-print">Áreas disponíveis</h3>
+<table class="table table-hover table-striped hidden-print">
+    @foreach (var item in ViewBag.Places)
+    {
+        <tr>
+            <td style="width: 25%;">
+                @item.Name
+            </td>
+            <td>
+                <span>R$</span> @item.Price
+            </td>
+            <td>
+                @item.Capacity
+            </td>
+            <td style="width: 30%;">
+                @item.IncludeItens
+            </td>
+            <td style="width: 30%;">
+                @item.Terms
+            </td>
+        </tr>
+    }
+
+</table>
+
 <script>
     function printPage() {
         window.print();

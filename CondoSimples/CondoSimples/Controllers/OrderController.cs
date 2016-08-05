@@ -135,6 +135,20 @@ namespace CondoSimples.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Order/Received/5
+        [Authorize(Roles = "Empregado")]
+        public ActionResult Received(int? id)
+        {
+            OrderModel orderModel = db.OrderModels.Include(u => u.UserRecipient).First(x => x.ID == id);
+
+            Mail.MailHandler.SendMail(orderModel.Description, orderModel.UserRecipient.Email, "Encomenda retirada");
+
+            orderModel.Received = true;
+            db.Entry(orderModel).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

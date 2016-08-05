@@ -19,5 +19,7 @@ namespace CondoSimples.Models
         public DateTime DateReceived { get; set; }
         [Display(Name = "Descrição do objeto")]
         public string Description { get; set; }
+        [Display(Name = "Retirado")]
+        public bool Received { get; set; }
     }
 }

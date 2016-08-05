@@ -20,6 +20,8 @@ namespace CondoSimples.Controllers
         {
             var user = db.Users.Find(User.Identity.GetUserId());
 
+            ViewBag.Places = db.CommonPlaceModels.Include(i => i.Condo).Where(x => x.Condo.ID == user.Condo_ID && x.Active == true).ToList();
+
             return View(db.ScheduleModels.Include(i => i.Place)
                                             .Include(i => i.User)
                                             .Include(i => i.User.Unit)

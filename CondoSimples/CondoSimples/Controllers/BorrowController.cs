@@ -142,7 +142,7 @@ namespace CondoSimples.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BorrowModel borrowModel = db.BorrowModels.FirstOrDefault(x => x.ID == id);
+            BorrowModel borrowModel = db.BorrowModels.Include(i => i.UserRequest).FirstOrDefault(x => x.ID == id);
             if (borrowModel == null)
             {
                 return HttpNotFound();

@@ -54,11 +54,11 @@
                     @Html.DisplayFor(modelItem => item.Published)
                 </td>
                 <td>
-                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id })<br>
                     @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
                     @if (item == Model.Last())
                     {
-                        @Html.Raw(" | ")
+                        <br>
                         @Html.ActionLink("Editar", "Edit", new { id = item.Id })
                     }
                 </td>

@@ -12,6 +12,7 @@ namespace CondoSimples.Models
         public int Id { get; set; }
         [Display(Name = "Notificação")]
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Message { get; set; }
         [Display(Name = "Data de registro")]
         public DateTime DateRegister { get; set; }

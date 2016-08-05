@@ -21,7 +21,7 @@ namespace CondoSimples.Controllers
             var condo = db.CondoModels.FirstOrDefault(x => x.ID == user.Condo_ID);
 
             ViewBag.Condo = condo.Name;
-            ViewBag.Post = db.BoardModels.Include(i => i.User).Where(x => x.User.Condo_ID == condo.ID).ToList();
+            ViewBag.Post = db.BoardModels.Include(i => i.User).Where(x => x.User.Condo_ID == condo.ID && x.Published == true).ToList();
             ViewBag.Borrow = db.BorrowModels.Include(u => u.UserRequest).Include(x => x.UserLending).Where(y => y.DateComplete == null && y.UserRequest.Id != user.Id && y.DateReturn > DateTime.Now && y.UserRequest.Condo_ID == user.Condo_ID && y.UserLending == null).ToList();
             ViewBag.Schedule = db.ScheduleModels.Include(i => i.Place).Include(i => i.User).Include(i => i.User.User).Where(x => x.User.User.Id == user.Id).ToList();
 
